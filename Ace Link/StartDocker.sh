@@ -28,7 +28,7 @@ fi
 
 # Start Ace Stream server if not running
 if ! nc -z 127.0.0.1 $port &> /dev/null; then
-    echo "Starting Ace Stream server"
+    printf "Starting Ace Stream server"
     docker run --rm --detach \
         --publish $port:$port \
         --name="acelink--ace-stream-server" $image 1> /dev/null
@@ -41,7 +41,6 @@ if ! nc -z 127.0.0.1 $port &> /dev/null; then
 
     # TODO: better detection
     sleep 2
-
     printf "\n"
 fi
 echo "Ace Stream server is running"

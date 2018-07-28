@@ -5,22 +5,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
 
-    @IBOutlet weak var menu: NSMenu!
-    @IBOutlet weak var statusMenuItem: NSMenuItem!
-    @IBOutlet weak var openStreamMenuItem: NSMenuItem!
-
-    @IBAction func quitClicked(_ sender: NSMenuItem?) {
-//        NSApplication.shared.terminate(self)
-    }
-
-    @IBAction func paste(_ sender: NSMenuItem?) {
-//        openStream(getClipboardString())
-    }
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("Application finished loading")
 
-        // One unnamed argument (hopefully)
+        // One unnamed argument, must be the stream hash
         if CommandLine.arguments.count % 1 == 1 {
             print("Open stream from arg", CommandLine.arguments.last!)
             openStream(CommandLine.arguments.last!)
@@ -31,21 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         statusItem.menu = AceLinkMenu(title: "")
-    }
-
-    func update() {
-//        print(getClipboardString(), "MENU OPEN")
-//
-//
-//        menuX
-//
-//        statusMenuItem.isEnabled = false
-//
-////        if getClipboardString() == "" {
-//        openStreamMenuItem.isEnabled = false
-////        } else {
-//            // Uhmm
-////        }
     }
 
     func openStream(_ hash: String) {
@@ -75,10 +48,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let clipboardString: String = clipboardData!.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        // Must be 40-char hexadecimal string.
+        // Verify conform SHA1
         let range = NSMakeRange(0, clipboardString.count)
         let regex = try! NSRegularExpression(
-            pattern: "^[a-rA-F0-9]{40}$",
+            pattern: "^[a-fA-F0-9]{40}$",
             options: NSRegularExpression.Options.caseInsensitive
         )
 

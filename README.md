@@ -10,9 +10,10 @@ How it works: Paste an Ace Stream hash in the Ace Link menu. Ace Link will launc
 
 ### To do, maybe
 
- - Open streams from the command line
+ - Validate stream before launching VLC
  - Show stream meta info
  - Stop the server when VLC is closed
+ - Register `acestream://` scheme
 
 ### Research
 
