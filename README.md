@@ -13,9 +13,8 @@ How it works: Paste an Ace Stream hash in the Ace Link menu. Ace Link will launc
  - Open streams from the command line
  - Show stream meta info
  - Stop the server when VLC is closed
- - Requires VLC and Docker
 
 ### Research
 
- - Use a more minimal Docker container, or
+ - Use a smaller Ace Stream Docker image, or
  - Use the Wine version of Ace Stream
