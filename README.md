@@ -1,6 +1,6 @@
 # Ace Link
 
-Mac OS X menu/status bar app that allows playing Ace Stream videos in VLC player. Requires VLC and Docker.
+Mac OS X menu/status bar app that allows playing Ace Stream video streams in VLC player. Requires VLC and Docker.
 
 How it works: Paste an Ace Stream hash in the Ace Link menu. Ace Link will launch the Ace Stream server in Docker and starts VLC with the Ace Stream server URL once started. When exiting Ace Link, it will shut down the Ace Stream server.
 
