@@ -1,0 +1,340 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4D0A4B35210BBCB100BF7929 /* StopDocker.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4D0A4B34210BBC6800BF7929 /* StopDocker.sh */; };
+		4D264644210CE84800B0570A /* AceLinkMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D264643210CE84800B0570A /* AceLinkMenu.swift */; };
+		4DB4E66F2108FA7200C2F1F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */; };
+		4DB4E6732108FA7300C2F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */; };
+		4DB4E6762108FA7300C2F1F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E6742108FA7300C2F1F2 /* Main.storyboard */; };
+		4DB4E67F210B2F3600C2F1F2 /* StartDocker.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4D0A4B34210BBC6800BF7929 /* StopDocker.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = StopDocker.sh; sourceTree = "<group>"; };
+		4D264643210CE84800B0570A /* AceLinkMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AceLinkMenu.swift; sourceTree = "<group>"; };
+		4DB4E66B2108FA7200C2F1F2 /* Ace Link.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ace Link.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4DB4E6752108FA7300C2F1F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4DB4E6772108FA7300C2F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DB4E6782108FA7300C2F1F2 /* Ace_Link.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ace_Link.entitlements; sourceTree = "<group>"; };
+		4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = StartDocker.sh; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4DB4E6682108FA7200C2F1F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4DB4E6622108FA7100C2F1F2 = {
+			isa = PBXGroup;
+			children = (
+				4DB4E66D2108FA7200C2F1F2 /* Ace Link */,
+				4DB4E66C2108FA7200C2F1F2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4DB4E66C2108FA7200C2F1F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4DB4E66B2108FA7200C2F1F2 /* Ace Link.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4DB4E66D2108FA7200C2F1F2 /* Ace Link */ = {
+			isa = PBXGroup;
+			children = (
+				4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */,
+				4DB4E6782108FA7300C2F1F2 /* Ace_Link.entitlements */,
+				4DB4E6742108FA7300C2F1F2 /* Main.storyboard */,
+				4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */,
+				4D264643210CE84800B0570A /* AceLinkMenu.swift */,
+				4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */,
+				4D0A4B34210BBC6800BF7929 /* StopDocker.sh */,
+				4DB4E6772108FA7300C2F1F2 /* Info.plist */,
+			);
+			path = "Ace Link";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4DB4E66A2108FA7200C2F1F2 /* Ace Link */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4DB4E67B2108FA7300C2F1F2 /* Build configuration list for PBXNativeTarget "Ace Link" */;
+			buildPhases = (
+				4DB4E6672108FA7200C2F1F2 /* Sources */,
+				4DB4E6682108FA7200C2F1F2 /* Frameworks */,
+				4DB4E6692108FA7200C2F1F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Ace Link";
+			productName = "Ace Link";
+			productReference = 4DB4E66B2108FA7200C2F1F2 /* Ace Link.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4DB4E6632108FA7100C2F1F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = blaise.io;
+				TargetAttributes = {
+					4DB4E66A2108FA7200C2F1F2 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 4DB4E6662108FA7100C2F1F2 /* Build configuration list for PBXProject "Ace Link" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4DB4E6622108FA7100C2F1F2;
+			productRefGroup = 4DB4E66C2108FA7200C2F1F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4DB4E66A2108FA7200C2F1F2 /* Ace Link */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4DB4E6692108FA7200C2F1F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D0A4B35210BBCB100BF7929 /* StopDocker.sh in Resources */,
+				4DB4E67F210B2F3600C2F1F2 /* StartDocker.sh in Resources */,
+				4DB4E6732108FA7300C2F1F2 /* Assets.xcassets in Resources */,
+				4DB4E6762108FA7300C2F1F2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4DB4E6672108FA7200C2F1F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D264644210CE84800B0570A /* AceLinkMenu.swift in Sources */,
+				4DB4E66F2108FA7200C2F1F2 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4DB4E6742108FA7300C2F1F2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DB4E6752108FA7300C2F1F2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4DB4E6792108FA7300C2F1F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4DB4E67A2108FA7300C2F1F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		4DB4E67C2108FA7300C2F1F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Ace Link/Ace_Link.entitlements";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Ace Link/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = blaise.io.acelink;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		4DB4E67D2108FA7300C2F1F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Ace Link/Ace_Link.entitlements";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Ace Link/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = blaise.io.acelink;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4DB4E6662108FA7100C2F1F2 /* Build configuration list for PBXProject "Ace Link" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DB4E6792108FA7300C2F1F2 /* Debug */,
+				4DB4E67A2108FA7300C2F1F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4DB4E67B2108FA7300C2F1F2 /* Build configuration list for PBXNativeTarget "Ace Link" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DB4E67C2108FA7300C2F1F2 /* Debug */,
+				4DB4E67D2108FA7300C2F1F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4DB4E6632108FA7100C2F1F2 /* Project object */;
+}
