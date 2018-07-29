@@ -3,7 +3,7 @@
 export PATH="$PATH:/usr/local/bin"
 
 # TODO: Only when we started it.
-osascript -e 'quit app "VLC"' 1> /dev/null
+osascript -e 'quit app "VLC"' &> /dev/null
 
 if docker ps &> /dev/null; then
 

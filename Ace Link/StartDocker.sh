@@ -34,13 +34,10 @@ if ! nc -z 127.0.0.1 $port &> /dev/null; then
         --name="acelink--ace-stream-server" $image 1> /dev/null
 
     # Wait until Ace Stream server runs
-    until nc -z 127.0.0.1 $port &> /dev/null; do
+    until curl "http://127.0.0.1:${port}/webui/api/service?method=get_version"; do
         printf "."
         sleep 0.5
     done
-
-    # TODO: better detection
-    sleep 2
     printf "\n"
 fi
 echo "Ace Stream server is running"
