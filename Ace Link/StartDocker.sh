@@ -1,6 +1,6 @@
 #!/bin/sh
 
-image="magnetikonline/acestream-server"
+image="blaiseio/acestream"
 port="6878"
 hash=$1
 
