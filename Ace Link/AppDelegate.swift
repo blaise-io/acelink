@@ -46,7 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return ""
         }
 
-        let clipboardString: String = clipboardData!.trimmingCharacters(in: .whitespacesAndNewlines)
+      let clipboardString: String = clipboardData!.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "acestream://", with: "")
 
         // Verify conform SHA1
         let range = NSMakeRange(0, clipboardString.count)
