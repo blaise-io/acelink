@@ -1,6 +1,6 @@
 #!/bin/sh
 
-image="blaiseio/acestream"
+image="blaiseio/acestream:1.1.1"
 port="6878"
 hash=$1
 
@@ -45,4 +45,4 @@ echo "Ace Stream server is running"
 # Open stream in VLC
 stream="http://127.0.0.1:${port}/ace/getstream?id=${hash}"
 echo "Opening stream: $stream"
-open -a VLC "$stream" --args --no-video-title-show --meta-title "Ace Link stream"
+open -a VLC "${stream}" --args --no-video-title-show --meta-title "Ace Link stream"
