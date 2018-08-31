@@ -1,9 +1,20 @@
 import Cocoa
 
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    private enum Constants {
+      static let aceStreamProtocol = "acestream"
+      static let aceStreamUrlBeginning = Constants.aceStreamProtocol + "://"
+      
+    }
+  
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
+
+    private func hashFromString(_ string:String) -> String {
+      return string.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: Constants.aceStreamUrlBeginning, with: "")
+    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("Application finished loading")
@@ -19,6 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         statusItem.menu = AceLinkMenu(title: "")
+
     }
 
     func openStream(_ hash: String) {
@@ -46,7 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return ""
         }
 
-        let clipboardString: String = clipboardData!.trimmingCharacters(in: .whitespacesAndNewlines)
+      let clipboardString: String = hashFromString(clipboardData!)
 
         // Verify conform SHA1
         let range = NSMakeRange(0, clipboardString.count)
@@ -66,4 +78,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         stopStream()
     }
 
+  
+  
+    /** 10.3 or Higher **/
+    func application(_ application: NSApplication, open urls: [URL]) {
+      guard let url = urls.first, let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) ,  urlComponents.scheme == Constants.aceStreamProtocol else {
+        return
+      }
+      openStream(hashFromString(url.absoluteString))
+    }
 }
