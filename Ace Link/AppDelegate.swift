@@ -4,9 +4,11 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    private var streaming = false;
     private enum Constants {
         static let aceStreamProtocol = "acestream"
         static let aceStreamUrlBeginning = Constants.aceStreamProtocol + "://"
+        static let vlcBundleId = "org.videolan.vlc"
     }
 
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
@@ -20,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("Application finished loading")
-
+        setupVideoPlayerClosedNotification()
         // One unnamed argument, must be the stream hash
         if CommandLine.arguments.count % 1 == 1 {
             print("Open stream from arg", CommandLine.arguments.last!)
@@ -41,6 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if task.terminationStatus == 0 {
             print("Done")
         }
+        streaming = true;
     }
 
     func stopStream() {
@@ -50,6 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if task.terminationStatus == 0 {
             print("Done")
         }
+        streaming = false;
     }
 
     func getClipboardString() -> String {
@@ -73,6 +77,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         return ""
+    }
+  
+    func setupVideoPlayerClosedNotification() {
+        NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: OperationQueue.main) { (notification) in
+              guard let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication , app.bundleIdentifier == Constants.vlcBundleId ,
+                self.streaming else {
+                return;
+              }
+              // VLC Closed. stop stream
+              print("VLC closed. Stopping stream...");
+              self.stopStream();
+          }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
