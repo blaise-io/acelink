@@ -10,6 +10,7 @@ Paste an Ace Stream hash in the Ace Link menu. Ace Link launches the Ace Stream 
 
 ### To do, maybe
 
- - Show stream meta info (help needed: how do I retrieve a stream's title from the Ace Stream server?)
+ - Show stream meta info 
+ - Maintain history of streams (help needed: how do I retrieve a stream's title from the Ace Stream server?)
  - Validate stream is working before launching VLC
  - Use the Wine version of Ace Stream and remove Docker dependency
