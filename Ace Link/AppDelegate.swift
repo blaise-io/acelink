@@ -4,7 +4,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    private var streaming = false;
+    private var vlcLaunched = false;
     private enum Constants {
         static let aceStreamProtocol = "acestream"
         static let aceStreamUrlBeginning = Constants.aceStreamProtocol + "://"
@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("Application finished loading")
-        setupVideoPlayerClosedNotification()
+
         // One unnamed argument, must be the stream hash
         if CommandLine.arguments.count % 1 == 1 {
             print("Open stream from arg", CommandLine.arguments.last!)
@@ -34,26 +34,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         statusItem.menu = AceLinkMenu(title: "")
+
+        setupTerminationNotificationHandler()
     }
 
     func openStream(_ hash: String) {
+        print("Open stream")
         let path = Bundle.main.path(forResource: "StartDocker", ofType: "sh")!
         let task = Process.launchedProcess(launchPath: path, arguments: [hash])
         task.waitUntilExit()
         if task.terminationStatus == 0 {
-            print("Done")
+            vlcLaunched = true;
+            print("Open stream done")
         }
-        streaming = true;
     }
 
     func stopStream() {
+        print("Stop stream")
         let path = Bundle.main.path(forResource: "StopDocker", ofType: "sh")!
         let task = Process.launchedProcess(launchPath: path, arguments: [])
         task.waitUntilExit()
         if task.terminationStatus == 0 {
-            print("Done")
+            vlcLaunched = false;
+            print("Stop stream done")
         }
-        streaming = false;
     }
 
     func getClipboardString() -> String {
@@ -79,25 +83,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return ""
     }
   
-    func setupVideoPlayerClosedNotification() {
-        NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: OperationQueue.main) { (notification) in
-              guard let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication , app.bundleIdentifier == Constants.vlcBundleId ,
-                self.streaming else {
-                return;
-              }
-              // VLC Closed. stop stream
-              print("VLC closed. Stopping stream...");
-              self.stopStream();
-          }
+    func setupTerminationNotificationHandler() {
+        NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.didTerminateApplicationNotification,
+            object: nil,
+            queue: OperationQueue.main,
+            using: handleTerminationNotifications
+        )
+    }
+
+    func handleTerminationNotifications(_ notification: Notification) {
+        guard let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication else {
+            return
+        }
+        if app.bundleIdentifier == Constants.vlcBundleId && self.vlcLaunched {
+            print("VLC closed by user");
+            self.stopStream();
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         stopStream()
     }
 
+    // Mac OS >= 10.13
     func application(_ application: NSApplication, open urls: [URL]) {
-        guard let url = urls.first else { return }
-        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
+        guard let url = urls.first else {
+            return
+        }
+        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            return
+        }
         if urlComponents.scheme == Constants.aceStreamProtocol {
             openStream(hashFromString(url.absoluteString))
         }

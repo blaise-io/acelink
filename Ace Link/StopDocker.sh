@@ -8,7 +8,7 @@ osascript -e 'quit app "VLC"' &> /dev/null
 if docker ps &> /dev/null; then
 
     if docker top acelink--ace-stream-server &> /dev/null; then
-        echo "Stop Ace Stream server"
+        echo "Stop server"
         docker stop acelink--ace-stream-server &> /dev/null || true
     fi
 
