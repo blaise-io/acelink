@@ -6,7 +6,7 @@ Paste an Ace Stream hash in the Ace Link menu. Ace Link launches the Ace Stream 
 
 ## [Download for Mac](https://github.com/blaise-io/acelink/releases)
 
-Requires VLC, Docker and Mac OS X High Sierra (10.13.x).
+Requires VLC, Docker and macOS High Sierra (10.13) or higher.
 
 ![Ace Link](https://i.imgur.com/QwMOUEp.png)
 
@@ -14,6 +14,6 @@ Requires VLC, Docker and Mac OS X High Sierra (10.13.x).
 ### To do, maybe
 
  - Show stream meta info 
- - Maintain history of streams (help needed: how do I retrieve a stream's title from the Ace Stream server?)
+ - Maintain history of streams (help appreciated: how do I retrieve a stream's title from the Ace Stream server?)
  - Validate stream is working before launching VLC
  - Use the Wine version of Ace Stream and remove Docker dependency
