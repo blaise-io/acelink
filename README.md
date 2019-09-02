@@ -13,7 +13,6 @@ Requires VLC, Docker and macOS High Sierra (10.13) or higher.
 
 ### To do, maybe
 
- - Show stream meta info 
- - Maintain history of streams (help appreciated: how do I retrieve a stream's title from the Ace Stream server?)
- - Validate stream is working before launching VLC
- - Use the Wine version of Ace Stream and remove Docker dependency
+ - Show stream meta info in VLC
+ - Maintain a history of streams
+ - Validate that a stream is working before launching VLC
