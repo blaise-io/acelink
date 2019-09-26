@@ -1,6 +1,6 @@
 #!/bin/sh
 
-image="blaiseio/acestream:1.1.1"
+image="blaiseio/acelink:1.2.0"
 port="6878"
 hash=$1
 
@@ -31,6 +31,7 @@ if ! nc -z 127.0.0.1 $port &> /dev/null; then
     printf "Starting Ace Stream server"
     docker run --rm --detach \
         --publish $port:$port \
+        --restart always \
         --name="acelink--ace-stream-server" $image 1> /dev/null
 
     # Wait until Ace Stream server runs
@@ -45,4 +46,4 @@ echo "Ace Stream server is running"
 # Open stream in VLC
 stream="http://127.0.0.1:${port}/ace/getstream?id=${hash}"
 echo "Opening stream: $stream"
-open -a VLC "${stream}" --args --no-video-title-show --meta-title "Ace Link stream"
+open -a VLC "${stream}" --args --no-video-title-show --video-title "Ace Link stream ${hash}"

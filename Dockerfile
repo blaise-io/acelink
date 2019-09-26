@@ -1,10 +1,9 @@
-# docker build . --tag blaiseio/acestream
+# docker build . --squash
 
-FROM debian:8-slim
+FROM debian:9-slim
 
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        curl \
+RUN apt-get update
+RUN apt-get install -yq --no-install-recommends \
         libpython2.7 \
         net-tools \
         python-minimal \
@@ -12,12 +11,11 @@ RUN apt-get update && \
         python-m2crypto \
         python-apsw \
         python-lxml \
-    && \
-    rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /opt/acestream && \
-    curl --silent "http://dl.acestream.org/linux/acestream_3.1.16_debian_8.7_x86_64.tar.gz" \
-        | tar --extract --gzip --strip-components=1 -C /opt/acestream && \
-    echo '/opt/acestream/lib' >> /etc/ld.so.conf && \
-    /sbin/ldconfig
+        wget
 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /var/cache/*
+RUN mkdir -p /opt/acestream
+RUN wget -qO- "http://acestream.org/downloads/linux/acestream_3.1.49_debian_9.9_x86_64.tar.gz" \
+        | tar --extract --gzip --strip-components=1 -C /opt/acestream
+RUN echo '/opt/acestream/lib' >> /etc/ld.so.conf && /sbin/ldconfig
 CMD /opt/acestream/acestreamengine --client-console
