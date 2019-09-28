@@ -12,9 +12,4 @@ if docker ps &> /dev/null; then
         docker stop acelink--ace-stream-server &> /dev/null || true
     fi
 
-#    # Quit Docker if no other containers are running.
-#    if ! docker ps -aq &> /dev/null; then
-#        echo "Quit Docker"
-#        osascript -e 'quit app "Docker"' 1> /dev/null
-#    fi
 fi

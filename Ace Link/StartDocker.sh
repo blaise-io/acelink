@@ -29,11 +29,7 @@ fi
 # Start Ace Stream server if not running
 if ! nc -z 127.0.0.1 $port &> /dev/null; then
     printf "Starting Ace Stream server"
-    docker run --rm --detach \
-        --publish $port:$port \
-        --restart always \
-        --name="acelink--ace-stream-server" $image 1> /dev/null
-
+    docker run -d --rm -p $port:$port --name="acelink--ace-stream-server" $image
     # Wait until Ace Stream server runs
     until curl "http://127.0.0.1:${port}/webui/api/service?method=get_version" &> /dev/null; do
         printf "."
@@ -46,4 +42,4 @@ echo "Ace Stream server is running"
 # Open stream in VLC
 stream="http://127.0.0.1:${port}/ace/getstream?id=${hash}"
 echo "Opening stream: $stream"
-open -a VLC "${stream}" --args --no-video-title-show --video-title "Ace Link stream ${hash}"
+open -a VLC "${stream}" --args --no-video-title-show --meta-title "Ace Link ${hash::7}"

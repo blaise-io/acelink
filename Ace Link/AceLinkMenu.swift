@@ -25,7 +25,7 @@ class AceLinkMenu: NSMenu {
     @objc func installDocker(_ sender: NSMenuItem?) {
         // Bypass silly login screen.
         NSWorkspace.shared.open(
-            URL(string: "https://download.docker.com/mac/stable/26399/Docker.dmg")!
+            URL(string: "https://download.docker.com/mac/stable/Docker.dmg")!
         )
     }
 
