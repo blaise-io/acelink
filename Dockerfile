@@ -1,5 +1,3 @@
-# docker build . --squash --tag blaiseio/acelink:1.2.0
-
 FROM debian:9-slim
 
 RUN apt-get update
