@@ -1,6 +1,6 @@
 #!/bin/sh
 
-image="blaiseio/acelink:1.2.0"
+image="blaiseio/acelink:1.3.0"  # TODO: Use XCode release version
 port="6878"
 hash=$1
 

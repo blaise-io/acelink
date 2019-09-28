@@ -1,6 +1,8 @@
 VERSION ?= $$(cat $(CURDIR)/VERSION)
 RELEASEDIR ?= $(CURDIR)/builds/Ace.Link.$(VERSION)
 
+# TODO: Populate VERSION from Xcode
+
 docker-image:
 	# Build the Docker image
 	# Also built automatically by https://hub.docker.com/r/blaiseio/acelink
