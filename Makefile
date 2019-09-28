@@ -21,6 +21,6 @@ release-dmg:
 release-tag:
 	# Create a new release tag
 	git tag $$(cat VERSION)
-	git push --follow-tags
+	git push origin --tags
 
 .PHONY: $(MAKECMDGOALS)
