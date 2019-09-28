@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         if let button = statusItem.button {
-            button.image = NSImage(named:NSImage.Name("StatusBarIcon"))
+            button.image = NSImage(named:"StatusBarIcon")
         }
 
         statusItem.menu = AceLinkMenu(title: "")
