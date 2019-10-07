@@ -11,6 +11,8 @@ Requires VLC, Docker and macOS High Sierra (10.13) or higher.
 
 ![Ace Link](https://i.imgur.com/QwMOUEp.png)
 
+Ace Link is an unsigned app because Apple does not allow torrent-related applications. If your version of macOS does not allow opening unsigned applications, [follow these instructions to by pass this restriction](http://osxdaily.com/2016/09/27/allow-apps-from-anywhere-macos-gatekeeper/).
+
 
 ### Ace Stream server only
 
