@@ -5,7 +5,7 @@ Ace Link is a macOS menu bar app that allows playing Ace Stream video streams in
 Paste an Ace Stream hash in the Ace Link menu. Ace Link will launch the Ace Stream server in Docker and open your stream in VLC.
 
 
-## [Download for macOS](https://github.com/blaise-io/acelink/releases)
+## [Download for macOS](https://github.com/blaise-io/acelink/releases/download/1.3.0/Ace.Link.1.3.0.dmg)
 
 Requires VLC, Docker and macOS High Sierra (10.13) or higher.
 
