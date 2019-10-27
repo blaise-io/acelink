@@ -1,7 +1,8 @@
-VERSION ?= $$(cat $(CURDIR)/VERSION)
+VERSION := $(shell cat "$(CURDIR)/Ace Link.xcodeproj/project.pbxproj" \
+	| grep MARKETING_VERSION -m1 | sed 's/.* = \(.*\);/\1/')
 RELEASEDIR ?= $(CURDIR)/builds/Ace.Link.$(VERSION)
 
-# TODO: Populate VERSION from Xcode
+TODO: Populate MARKETING_VERSION from VERSION file instead
 
 docker-image:
 	# Build the Docker image
@@ -20,7 +21,7 @@ release-dmg:
 
 release-tag:
 	# Create a new release tag
-	git tag $$(cat VERSION)
+	git tag $(VERSION)
 	git push origin --tags
 
 .PHONY: $(MAKECMDGOALS)

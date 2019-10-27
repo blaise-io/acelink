@@ -9,6 +9,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         static let aceStreamProtocol = "acestream"
         static let aceStreamUrlBeginning = Constants.aceStreamProtocol + "://"
         static let vlcBundleId = "org.videolan.vlc"
+        static let startDockerExitCodes = [
+            100: "Cannot launch Docker",
+            101: "Cannot connect to Docker",
+            102: "Cannot connect to Acestream server",
+            103: "Cannot open stream",
+            104: "Cannot launch VLC",
+        ]
     }
 
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
@@ -40,13 +47,39 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func openStream(_ hash: String) {
         print("Open stream")
-        let path = Bundle.main.path(forResource: "StartDocker", ofType: "sh")!
-        let task = Process.launchedProcess(launchPath: path, arguments: [hash])
-        task.waitUntilExit()
-        if task.terminationStatus == 0 {
+
+        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let startDockerPath = Bundle.main.path(forResource: "StartDocker", ofType: "sh")!
+        let process = Process()
+
+        process.environment = ProcessInfo.processInfo.environment
+        process.environment!["image"] = "blaiseio/acelink:" + version
+        process.environment!["hash"] = hash
+        process.launchPath = startDockerPath
+        process.launch()
+        process.waitUntilExit()
+        
+        print("StartDocker.sh returned status code: " + String(process.terminationStatus))
+
+        let exitCode = Int(process.terminationStatus)
+        let message = Constants.startDockerExitCodes[exitCode]
+        
+        if exitCode == 0 {
             vlcLaunched = true;
-            print("Open stream done")
+            return
         }
+
+        error("\(message ?? "Unknown error") (code \(exitCode)) ")
+    }
+    
+    func error(_ text: String) {
+        let alert = NSAlert()
+        alert.alertStyle = .warning
+        alert.messageText = "Ace Link error"
+        alert.icon = NSImage(named: NSImage.cautionName)
+        alert.informativeText = text
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
     }
 
     func stopStream() {
