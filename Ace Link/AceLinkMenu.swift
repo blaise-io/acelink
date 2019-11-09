@@ -23,7 +23,6 @@ class AceLinkMenu: NSMenu {
     let dockerSeparatorItem = NSMenuItem.separator()
 
     @objc func installDocker(_ sender: NSMenuItem?) {
-        // Bypass silly login screen.
         NSWorkspace.shared.open(
             URL(string: "https://download.docker.com/mac/stable/Docker.dmg")!
         )
@@ -109,9 +108,14 @@ class AceLinkMenu: NSMenu {
         return exists && isDirectory.boolValue
     }
 
+    func isinstalled(_ bundleId: String) -> Bool {
+        let appUrlUnmanaged = LSCopyApplicationURLsForBundleIdentifier(bundleId as CFString, nil)
+        return appUrlUnmanaged?.takeRetainedValue() != nil
+    }
+
     override func update() {
-        let isDockerInstalled = isDir("/Applications/Docker.app")
-        let isVLCInstalled = isDir("/Applications/VLC.app")
+        let isDockerInstalled = isinstalled("com.docker.docker")
+        let isVLCInstalled = isinstalled("org.videolan.vlc")
         let isAllInstalled = isDockerInstalled && isVLCInstalled
         let clipboardString = getAppDelegate().getClipboardString()
 

@@ -9,6 +9,7 @@ RUN apt-get install -yq --no-install-recommends \
         python-m2crypto \
         python-apsw \
         python-lxml \
+        sqlite3 \
         wget
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /var/cache/*
