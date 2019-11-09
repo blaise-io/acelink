@@ -28,6 +28,8 @@ if ! docker image inspect $image &> /dev/null; then
     docker pull $image
 fi
 
+docker stop acelink--ace-stream-server || true
+
 # Start Ace Stream server if not running
 if ! nc -z 127.0.0.1 $port &> /dev/null; then
     printf "Starting Ace Stream server"
@@ -43,7 +45,21 @@ fi
 echo "Ace Stream server is running"
 
 echo "Verifying stream: $stream"
-curl -sS --fail $stream || exit 103
+curl -sSq --fail $stream || exit 103
 
-echo "Opening stream: $stream"
-open -a VLC "${stream}" --args --no-video-title-show --meta-title "Ace Link ${hash::7}" || exit 104
+echo "Retrieving title"
+title=$(docker exec $container sqlite3 /root/.ACEStream/sqlite/torrentstream.sdb \
+        "SELECT name FROM Torrent INNER JOIN ts_players ON ts_players.infohash = Torrent.infohash WHERE player_id='$hash';" ".exit")
+echo "Title: $title"
+
+echo "Creating playlist"
+streamsdir="$HOME/Library/Application Support/Ace Link/streams"
+streamfile="$streamsdir/${title} [${hash::7}].m3u8"
+mkdir -p "${streamsdir}"
+
+echo "#EXTM3U\n\
+#EXTINF:0, Ace Link - $title [${hash::7}]\n\
+$stream\n" > "$streamfile"
+
+echo "Opening stream $stream from $streamfile"
+open -a VLC "$streamfile" --args --no-video-title-show || exit 104
