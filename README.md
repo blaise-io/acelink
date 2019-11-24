@@ -13,7 +13,7 @@ Requires VLC, Docker and macOS High Sierra (10.13) or higher.
 
 Ace Link is an unsigned app because Apple does not allow p2p related applications. If your version of macOS does not allow opening unsigned applications, [follow these instructions to bypass this restriction](http://osxdaily.com/2016/09/27/allow-apps-from-anywhere-macos-gatekeeper/).
 
-[Download an older version](https://github.com/blaise-io/acelink/releases)
+ - [Download an older version](https://github.com/blaise-io/acelink/releases)
 
 
 ### Ace Stream server only
