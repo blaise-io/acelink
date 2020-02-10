@@ -56,7 +56,7 @@ class AceLinkMenu: NSMenu {
 
     @objc func openStreamFromClipboard(_ sender: NSMenuItem?) {
         let appDelegate = getAppDelegate()
-        appDelegate.openStream(appDelegate.getClipboardString())
+        appDelegate.openStream(appDelegate.getClipboardString(), type: appDelegate.getClipboardStringLinkType())
     }
 
     let quitItem = NSMenuItem(

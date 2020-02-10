@@ -2,7 +2,7 @@
 set -e
 
 port="6878"
-stream="http://127.0.0.1:${port}/ace/getstream?id=${hash}"
+stream="http://127.0.0.1:${port}/ace/getstream?${stream_id_param}=${hash}"
 
 export PATH="$PATH:/usr/local/bin"
 echo "Docker image: ${image}"

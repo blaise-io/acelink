@@ -6,6 +6,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var vlcLaunched = false;
     private enum Constants {
+        static let magnetStreamProtocol = "magnet"
+        static let magnetStreamUrlBeginning = Constants.magnetStreamProtocol + ":?xt=urn:btih:"
         static let aceStreamProtocol = "acestream"
         static let aceStreamUrlBeginning = Constants.aceStreamProtocol + "://"
         static let vlcBundleId = "org.videolan.vlc"
@@ -18,6 +20,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ]
     }
 
+    enum StreamType {
+        case acestream
+        case magnet
+        case none
+    }
+    
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
 
     private func hashFromString(_ string:String) -> String {
@@ -27,13 +35,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
     }
 
+   private func hashFromMagnetString(_ string:String) -> String {
+        let magnetHash = string.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(
+                of: Constants.magnetStreamUrlBeginning,
+                with: ""
+            )
+        
+        let delimiter = "&"
+        let token = magnetHash.components(separatedBy: delimiter)
+        
+        if token.isEmpty {
+            return ""
+        } else {
+            return token[0];
+        }
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("Application finished loading")
 
         // One unnamed argument, must be the stream hash
         if CommandLine.arguments.count % 1 == 1 {
             print("Open stream from arg", CommandLine.arguments.last!)
-            openStream(CommandLine.arguments.last!)
+            openStream(CommandLine.arguments.last!, type: StreamType.acestream)
         }
 
         if let button = statusItem.button {
@@ -45,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupTerminationNotificationHandler()
     }
 
-    func openStream(_ hash: String) {
+    func openStream(_ hash: String, type: StreamType) {
         print("Open stream")
 
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
@@ -55,6 +79,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         process.environment = ProcessInfo.processInfo.environment
         process.environment!["image"] = "blaiseio/acelink:" + version
         process.environment!["hash"] = hash
+        if (type == StreamType.magnet) {
+            process.environment!["stream_id_param"] = "infohash"
+        } else {
+            process.environment!["stream_id_param"] = "id"
+        }
         process.launchPath = startDockerPath
         process.launch()
         process.waitUntilExit()
@@ -92,15 +121,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print("Stop stream done")
         }
     }
+    
+    func getClipboardStringLinkType() -> StreamType {
+        let clipboardData = NSPasteboard.general.string(forType: NSPasteboard.PasteboardType.string)
 
+        if clipboardData == nil {
+            return StreamType.none
+        }
+        
+        if clipboardData?.range(of:Constants.magnetStreamProtocol) != nil {
+            return StreamType.magnet
+        } else {
+            return StreamType.acestream
+        }
+    }
+    
     func getClipboardString() -> String {
         let clipboardData = NSPasteboard.general.string(forType: NSPasteboard.PasteboardType.string)
 
         if clipboardData == nil {
             return ""
         }
-
-        let clipboardString: String = hashFromString(clipboardData!)
+        
+        let clipboardString: String
+            
+        if clipboardData?.range(of:Constants.magnetStreamProtocol) != nil {
+            clipboardString = hashFromMagnetString(clipboardData!)
+        } else {
+            clipboardString = hashFromString(clipboardData!)
+        }
 
         // Verify conform SHA1
         let range = NSMakeRange(0, clipboardString.count)
@@ -148,7 +197,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         if urlComponents.scheme == Constants.aceStreamProtocol {
-            openStream(hashFromString(url.absoluteString))
+            
+            if url.absoluteString.range(of:Constants.magnetStreamProtocol) != nil {
+                openStream(hashFromMagnetString(url.absoluteString), type: StreamType.magnet)
+            } else {
+                openStream(hashFromString(url.absoluteString), type: StreamType.acestream)
+            }
         }
     }
 }
