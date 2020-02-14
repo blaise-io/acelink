@@ -5,8 +5,7 @@ RELEASEDIR ?= $(CURDIR)/builds/Ace.Link.$(VERSION)
 docker-image:
 	# Build the Docker image
 	# Also built automatically by https://hub.docker.com/r/blaiseio/acelink
-	docker stop acelink--ace-stream-server || true
-	docker build . --squash --tag blaiseio/acelink:$(VERSION)
+	docker build . --progress plain --squash --tag blaiseio/acelink:$(VERSION)
 
 archive:
 	# Create a build

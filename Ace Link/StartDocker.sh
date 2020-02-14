@@ -28,7 +28,8 @@ if ! docker image inspect $image &> /dev/null; then
     docker pull $image
 fi
 
-docker stop acelink--ace-stream-server || true
+# Shutdown if it was still running
+docker kill acelink--ace-stream-server || true
 
 # Start Ace Stream server if not running
 if ! nc -z 127.0.0.1 $port &> /dev/null; then
@@ -48,8 +49,8 @@ echo "Verifying stream: $stream"
 curl -sSq --fail $stream || exit 103
 
 echo "Retrieving title"
-title=$(docker exec $container sqlite3 /root/.ACEStream/sqlite/torrentstream.sdb \
-        "SELECT name FROM Torrent INNER JOIN ts_players ON ts_players.infohash = Torrent.infohash WHERE player_id='$hash';" ".exit")
+sdbfile="/root/.ACEStream/sqlite/torrentstream.sdb"
+title=$(docker exec $container sqlite3 $sdbfile "SELECT name FROM Torrent;")
 echo "Title: $title"
 
 echo "Creating playlist"
