@@ -29,4 +29,4 @@ RUN timeout 10s /opt/acestream/start-engine --client-console || echo "done"
 # Access at http://127.0.0.1:6878/webui/html/player.html?id=<hash>
 COPY player.html /opt/acestream/data/webui/html/player.html
 
-CMD /opt/acestream/start-engine --client-console
+CMD /opt/acestream/start-engine --use-ffmpeg=1 --client-console
