@@ -1,6 +1,9 @@
+import os
 import Cocoa
 
 class AceLinkMenu: NSMenu {
+
+    let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
 
     let statusItem = NSMenuItem(
         title: "Ace Link dependencies set up",
@@ -25,6 +28,20 @@ class AceLinkMenu: NSMenu {
     @objc func installDocker(_ sender: NSMenuItem?) {
         NSWorkspace.shared.open(
             URL(string: "https://download.docker.com/mac/stable/Docker.dmg")!
+        )
+    }
+    
+    let updateAvailableItem = NSMenuItem(
+        title: "Update",
+        action: #selector(openLastReleasePage(_:)),
+        keyEquivalent: ""
+    )
+    
+    let updateAvailableSeparatorItem = NSMenuItem.separator()
+    
+    @objc func openLastReleasePage(_ sender: NSMenuItem?) {
+        NSWorkspace.shared.open(
+            URL(string: "https://github.com/blaise-io/acelink/releases/latest")!
         )
     }
 
@@ -84,6 +101,10 @@ class AceLinkMenu: NSMenu {
 
         openStreamItem.target = self
 
+        updateAvailableItem.isHidden = true
+        updateAvailableItem.target = self
+        updateAvailableSeparatorItem.isHidden = true
+
         self.addItem(dockerStatusItem)
         self.addItem(dockerInstallItem)
         self.addItem(dockerSeparatorItem)
@@ -94,8 +115,16 @@ class AceLinkMenu: NSMenu {
 
         self.addItem(statusItem)
         self.addItem(openStreamItem)
+
+        self.addItem(updateAvailableSeparatorItem)
+        self.addItem(updateAvailableItem)
+
         self.addItem(NSMenuItem.separator())
         self.addItem(quitItem)
+
+        DispatchQueue.main.async() {
+            self.checkNewReleaseAvailable()
+        }
     }
 
     func getAppDelegate() -> AppDelegate {
@@ -137,6 +166,33 @@ class AceLinkMenu: NSMenu {
         statusItem.state = NSControl.StateValue.on
         statusItem.isEnabled = false
         statusItem.isHidden = !isAllInstalled
+    }
+
+    func checkNewReleaseAvailable() {
+        let url = URL(string: "https://api.github.com/repos/blaise-io/acelink/releases/latest")!
+        struct Response: Decodable {
+            let tag_name: String
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                do {
+                    let res = try JSONDecoder().decode(Response.self, from: data)
+                    let remote = res.tag_name
+                    os_log("Installed version: %@, latest version available: %@", self.version, remote)
+
+                    if self.version.compare(remote, options: .numeric) == .orderedAscending {
+                        os_log("Update is available")
+                        self.updateAvailableSeparatorItem.isHidden = false
+                        self.updateAvailableItem.isHidden = false
+                        self.updateAvailableItem.title = "Update to Ace Link \(remote)"
+                    }
+
+                } catch let error {
+                    os_log("Could not extract remote version: %@", type: .error, error.localizedDescription)
+                }
+            }
+        }.resume()
     }
 
 }
