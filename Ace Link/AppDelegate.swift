@@ -111,8 +111,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
-        os_log("%@ error: %@ (%@)", type: .error, scriptName, exitCode, message)
-        error("\(message) (code \(exitCode)) ")
+        let formattedError = "\(message) (code \(exitCode))"
+        error(formattedError)
+        os_log("%@ error: %@", type: .error, scriptName, formattedError)
     }
 
     func error(_ text: String) {
