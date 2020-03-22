@@ -8,7 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4D0A4B35210BBCB100BF7929 /* StopDocker.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4D0A4B34210BBC6800BF7929 /* StopDocker.sh */; };
-		4D264644210CE84800B0570A /* AceLinkMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D264643210CE84800B0570A /* AceLinkMenu.swift */; };
+		4D0CFED024278D0900264B83 /* UpdateMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFECF24278D0900264B83 /* UpdateMenu.swift */; };
+		4D0CFED224278D8400264B83 /* InstallDockerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFED124278D8400264B83 /* InstallDockerMenu.swift */; };
+		4D0CFED42427934000264B83 /* InstallVLCMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFED32427934000264B83 /* InstallVLCMenu.swift */; };
+		4D0CFED62427947900264B83 /* OpenStreamMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFED52427947900264B83 /* OpenStreamMenu.swift */; };
+		4D0CFED82427B04000264B83 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 4D0CFED72427B04000264B83 /* VERSION */; };
+		4D264644210CE84800B0570A /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D264643210CE84800B0570A /* StatusMenu.swift */; };
 		4D5478E0240158DF00A954E8 /* Dockerfile in Resources */ = {isa = PBXBuildFile; fileRef = 4D5478DF240158DE00A954E8 /* Dockerfile */; };
 		4DB4E66F2108FA7200C2F1F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */; };
 		4DB4E6732108FA7300C2F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */; };
@@ -18,7 +23,12 @@
 
 /* Begin PBXFileReference section */
 		4D0A4B34210BBC6800BF7929 /* StopDocker.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = StopDocker.sh; sourceTree = "<group>"; };
-		4D264643210CE84800B0570A /* AceLinkMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AceLinkMenu.swift; sourceTree = "<group>"; };
+		4D0CFECF24278D0900264B83 /* UpdateMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenu.swift; sourceTree = "<group>"; };
+		4D0CFED124278D8400264B83 /* InstallDockerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallDockerMenu.swift; sourceTree = "<group>"; };
+		4D0CFED32427934000264B83 /* InstallVLCMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallVLCMenu.swift; sourceTree = "<group>"; };
+		4D0CFED52427947900264B83 /* OpenStreamMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenStreamMenu.swift; sourceTree = "<group>"; };
+		4D0CFED72427B04000264B83 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = SOURCE_ROOT; };
+		4D264643210CE84800B0570A /* StatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 		4D5478DF240158DE00A954E8 /* Dockerfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dockerfile; sourceTree = SOURCE_ROOT; };
 		4DB4E66B2108FA7200C2F1F2 /* Ace Link.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ace Link.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +50,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D0CFECB2427846700264B83 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				4D264643210CE84800B0570A /* StatusMenu.swift */,
+				4D0CFED124278D8400264B83 /* InstallDockerMenu.swift */,
+				4D0CFED32427934000264B83 /* InstallVLCMenu.swift */,
+				4D0CFED52427947900264B83 /* OpenStreamMenu.swift */,
+				4D0CFECF24278D0900264B83 /* UpdateMenu.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 		4DB4E6622108FA7100C2F1F2 = {
 			isa = PBXGroup;
 			children = (
@@ -59,12 +81,13 @@
 		4DB4E66D2108FA7200C2F1F2 /* Ace Link */ = {
 			isa = PBXGroup;
 			children = (
+				4D0CFED72427B04000264B83 /* VERSION */,
+				4D0CFECB2427846700264B83 /* Menu */,
 				4D5478DF240158DE00A954E8 /* Dockerfile */,
 				4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */,
 				4DB4E6782108FA7300C2F1F2 /* Ace_Link.entitlements */,
 				4DB4E6742108FA7300C2F1F2 /* Main.storyboard */,
 				4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */,
-				4D264643210CE84800B0570A /* AceLinkMenu.swift */,
 				4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */,
 				4D0A4B34210BBC6800BF7929 /* StopDocker.sh */,
 				4DB4E6772108FA7300C2F1F2 /* Info.plist */,
@@ -134,6 +157,7 @@
 				4D0A4B35210BBCB100BF7929 /* StopDocker.sh in Resources */,
 				4DB4E67F210B2F3600C2F1F2 /* StartDocker.sh in Resources */,
 				4DB4E6732108FA7300C2F1F2 /* Assets.xcassets in Resources */,
+				4D0CFED82427B04000264B83 /* VERSION in Resources */,
 				4D5478E0240158DF00A954E8 /* Dockerfile in Resources */,
 				4DB4E6762108FA7300C2F1F2 /* Main.storyboard in Resources */,
 			);
@@ -146,7 +170,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D264644210CE84800B0570A /* AceLinkMenu.swift in Sources */,
+				4D264644210CE84800B0570A /* StatusMenu.swift in Sources */,
+				4D0CFED224278D8400264B83 /* InstallDockerMenu.swift in Sources */,
+				4D0CFED024278D0900264B83 /* UpdateMenu.swift in Sources */,
+				4D0CFED42427934000264B83 /* InstallVLCMenu.swift in Sources */,
+				4D0CFED62427947900264B83 /* OpenStreamMenu.swift in Sources */,
 				4DB4E66F2108FA7200C2F1F2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

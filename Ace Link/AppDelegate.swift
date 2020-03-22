@@ -1,3 +1,4 @@
+import os
 import Cocoa
 
 
@@ -52,11 +53,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        print("Application finished loading")
+        os_log("Application finished loading")
 
         // One unnamed argument, must be the stream hash
         if CommandLine.arguments.count % 1 == 1 {
-            print("Open stream from arg", CommandLine.arguments.last!)
+            os_log("Open stream from arg", CommandLine.arguments.last!)
             openStream(CommandLine.arguments.last!, type: StreamType.acestream)
         }
 
@@ -64,17 +65,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named:"StatusBarIcon")
         }
 
-        statusItem.menu = AceLinkMenu(title: "")
+        statusItem.menu = StatusMenu(title: "")
 
         setupTerminationNotificationHandler()
     }
 
     func openStream(_ hash: String, type: StreamType) {
-        print("Open stream")
+        os_log("Open stream")
 
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let scriptName = "StartDocker.sh"
         let startDockerPath = Bundle.main.path(forResource: "StartDocker", ofType: "sh")!
         let process = Process()
+
+        let pipe = Pipe()
+        let outHandle = pipe.fileHandleForReading
+
+        outHandle.readabilityHandler = { pipe in
+            if let line = String(data: pipe.availableData, encoding: .utf8) {
+                if line != "" && line != "." {
+                    os_log("%@ %{public}@", scriptName, line)
+                }
+            }
+        }
 
         process.environment = ProcessInfo.processInfo.environment
         process.environment!["image"] = "blaiseio/acelink:" + version
@@ -85,20 +98,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             process.environment!["stream_id_param"] = "id"
         }
         process.launchPath = startDockerPath
+        process.standardOutput = pipe
         process.launch()
         process.waitUntilExit()
 
-        print("StartDocker.sh returned status code: " + String(process.terminationStatus))
-
         let exitCode = Int(process.terminationStatus)
-        let message = Constants.startDockerExitCodes[exitCode]
+        let message = Constants.startDockerExitCodes[exitCode] ?? "unknown error"
 
         if exitCode == 0 {
+            os_log("%@ ran successfully", scriptName)
             vlcLaunched = true;
             return
         }
 
-        error("\(message ?? "Unknown error") (code \(exitCode)) ")
+        let formattedError = "\(message) (code \(exitCode))"
+        error(formattedError)
+        os_log("%@ error: %@", type: .error, scriptName, formattedError)
     }
 
     func error(_ text: String) {
@@ -112,13 +127,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func stopStream() {
-        print("Stop stream")
+        os_log("Stop stream")
         let path = Bundle.main.path(forResource: "StopDocker", ofType: "sh")!
         let task = Process.launchedProcess(launchPath: path, arguments: [])
         task.waitUntilExit()
         if task.terminationStatus == 0 {
             vlcLaunched = false;
-            print("Stop stream done")
+            os_log("Stop stream done")
         }
     }
 
@@ -179,7 +194,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         if app.bundleIdentifier == Constants.vlcBundleId && self.vlcLaunched {
-            print("VLC closed by user");
+            os_log("VLC closed by user");
             self.stopStream();
         }
     }
@@ -188,7 +203,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         stopStream()
     }
 
-    // Mac OS >= 10.13
     func application(_ application: NSApplication, open urls: [URL]) {
         guard let url = urls.first else {
             return
