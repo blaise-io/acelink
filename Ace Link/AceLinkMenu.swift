@@ -4,6 +4,10 @@ import Cocoa
 class AceLinkMenu: NSMenu {
 
     let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+    let dockerDownloadURL = "https://download.docker.com/mac/stable/Docker.dmg"
+    let aceLinkDownloadLatestUrl = "https://github.com/blaise-io/acelink/releases/latest"
+    let aceLinkLatestApiUrl = "https://api.github.com/repos/blaise-io/acelink/releases/latest"
+    let downloadVlcUrl = "https://www.videolan.org/vlc/download-macosx.html"
 
     let statusItem = NSMenuItem(
         title: "Ace Link dependencies set up",
@@ -27,7 +31,7 @@ class AceLinkMenu: NSMenu {
 
     @objc func installDocker(_ sender: NSMenuItem?) {
         NSWorkspace.shared.open(
-            URL(string: "https://download.docker.com/mac/stable/Docker.dmg")!
+            URL(string: dockerDownloadURL)!
         )
     }
     
@@ -41,7 +45,7 @@ class AceLinkMenu: NSMenu {
     
     @objc func openLastReleasePage(_ sender: NSMenuItem?) {
         NSWorkspace.shared.open(
-            URL(string: "https://github.com/blaise-io/acelink/releases/latest")!
+            URL(string: aceLinkDownloadLatestUrl)!
         )
     }
 
@@ -61,7 +65,7 @@ class AceLinkMenu: NSMenu {
 
     @objc func installVLC(_ sender: NSMenuItem?) {
         NSWorkspace.shared.open(
-            URL(string: "https://www.videolan.org/vlc/download-macosx.html")!
+            URL(string: downloadVlcUrl)!
         )
     }
 
@@ -169,7 +173,7 @@ class AceLinkMenu: NSMenu {
     }
 
     func checkNewReleaseAvailable() {
-        let url = URL(string: "https://api.github.com/repos/blaise-io/acelink/releases/latest")!
+        let url = URL(string: aceLinkLatestApiUrl)!
         struct Response: Decodable {
             let tag_name: String
         }
