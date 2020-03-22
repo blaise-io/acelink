@@ -65,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named:"StatusBarIcon")
         }
 
-        statusItem.menu = AceLinkMenu(title: "")
+        statusItem.menu = StatusMenu(title: "")
 
         setupTerminationNotificationHandler()
     }
@@ -98,7 +98,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             process.environment!["stream_id_param"] = "id"
         }
         process.launchPath = startDockerPath
-        process.standardOutput = pipe // Redirect stdout to our pipe
+        process.standardOutput = pipe
         process.launch()
         process.waitUntilExit()
 
@@ -111,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
-        os_log("%@ error: %@ (%@)", type: .error, scriptName, String(process.terminationStatus), message, exitCode)
+        os_log("%@ error: %@ (%@)", type: .error, scriptName, exitCode, message)
         error("\(message) (code \(exitCode)) ")
     }
 
@@ -202,7 +202,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         stopStream()
     }
 
-    // Mac OS >= 10.13
     func application(_ application: NSApplication, open urls: [URL]) {
         guard let url = urls.first else {
             return
