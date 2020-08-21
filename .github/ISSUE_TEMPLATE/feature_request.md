@@ -7,8 +7,10 @@ assignees: blaise-io
 
 ---
 
-**Describe the problem you are encountering**
+**Describe the problem you are encountering**  
 …
 
-**Describe the solution you'd like**
+Note: Don't share Acestream IDs or websites containing pirated content.
+
+**Describe the solution you'd like**  
 …

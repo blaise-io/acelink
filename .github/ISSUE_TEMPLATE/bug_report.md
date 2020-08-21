@@ -7,15 +7,16 @@ assignees: blaise-io
 
 ---
 
-**Describe the bug**
-…
+**Describe the bug**  
+…  
+
 Note: Don't share Acestream IDs or websites containing pirated content.
 
-**What I expected to happen**
+**What I expected to happen**  
 …
 
-**Screenshots**
+**Screenshots**  
 …
 
-**Additional debug info**
+**Additional debug info**  
 …
