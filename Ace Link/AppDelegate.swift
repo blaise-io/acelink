@@ -55,17 +55,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         os_log("Application finished loading")
 
-        // One unnamed argument, must be the stream hash
-        if CommandLine.arguments.count % 1 == 1 {
-            os_log("Open stream from arg", CommandLine.arguments.last!)
-            openStream(CommandLine.arguments.last!, type: StreamType.acestream)
-        }
-
         if let button = statusItem.button {
             button.image = NSImage(named:"StatusBarIcon")
         }
 
         statusItem.menu = StatusMenu(title: "")
+
+        // One unnamed argument, must be the stream hash
+        if CommandLine.arguments.count % 1 == 1 {
+            os_log("Open stream from arg", CommandLine.arguments.last!)
+            openStream(CommandLine.arguments.last!, type: StreamType.acestream)
+        }
 
         setupTerminationNotificationHandler()
     }
@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         outHandle.readabilityHandler = { pipe in
             if let line = String(data: pipe.availableData, encoding: .utf8) {
                 if line != "" && line != "." {
-                    os_log("%@ %{public}@", scriptName, line)
+                    os_log("%{public}@ %{public}@", scriptName, line)
                 }
             }
         }
@@ -106,14 +106,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let message = Constants.startDockerExitCodes[exitCode] ?? "unknown error"
 
         if exitCode == 0 {
-            os_log("%@ ran successfully", scriptName)
+            os_log("%{public}@ ran successfully", scriptName)
             vlcLaunched = true;
             return
         }
 
         let formattedError = "\(message) (code \(exitCode))"
         error(formattedError)
-        os_log("%@ error: %@", type: .error, scriptName, formattedError)
+        os_log("%{public}@ error: %{public}@", type: .error, scriptName, formattedError)
     }
 
     func error(_ text: String) {

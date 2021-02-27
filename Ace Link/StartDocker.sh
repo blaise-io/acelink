@@ -45,6 +45,12 @@ if ! nc -z 127.0.0.1 $port &> /dev/null; then
 fi
 echo "Ace Stream server is running"
 
+# Some websites open acestream:// and communicate with the server directly.
+if [ -z "$hash" ]; then
+    echo "Booting server only..."
+    exit 0
+fi
+
 echo "Verifying stream: $stream"
 curl -sSq --fail $stream || exit 103
 

@@ -47,7 +47,7 @@ class UpdateMenu {
                 do {
                     let result = try JSONDecoder().decode(Response.self, from: data)
                     let remote = result.tag_name
-                    os_log("Installed version: %@, latest version available: %@", self.version, remote)
+                    os_log("Installed version: %{public}@, latest version available: %{public}@", self.version, remote)
 
                     if self.version.compare(remote, options: .numeric) == .orderedAscending {
                         os_log("Update is available")
@@ -57,7 +57,7 @@ class UpdateMenu {
                     }
 
                 } catch let error {
-                    os_log("Could not extract remote version: %@", type: .error, error.localizedDescription)
+                    os_log("Could not extract remote version: %{public}@", type: .error, error.localizedDescription)
                 }
             }
         }.resume()
