@@ -19,4 +19,4 @@ Ace Link is an unsigned app because Apple does not allow p2p related application
 
 ### Ace Stream server only
 
-If you want to play a stream in a player other than VLC, you only need Docker to be installed. Just run `docker run -p 6878:6878 blaiseio/acestream` in a terminal and open `http://127.0.0.1:6878/ace/getstream?id=<acestream hash>` in a player with HLS support. You don't need to download or install Ace Link.
+If you want to play a stream in a player other than VLC, you only need Docker to be installed. Just run `docker run --rm -p 6878:6878 blaiseio/acelink` in a terminal and open `http://127.0.0.1:6878/ace/getstream?id=<acestream hash>` in a player with HLS support. You don't need to download or install Ace Link.
