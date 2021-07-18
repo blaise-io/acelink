@@ -10,7 +10,7 @@ Install Ace Link via the link below or using [Homebrew](https://brew.sh): `brew 
 
 Requires VLC, Docker and macOS High Sierra (10.13) or higher.
 
-![Ace Link](acelink.png)
+<img src="acelink.png" width="324" alt="Ace Link" />
 
 Ace Link is an unsigned app because Apple does not allow p2p related applications. If your version of macOS does not allow opening unsigned applications, [follow these instructions to bypass this restriction](http://osxdaily.com/2016/09/27/allow-apps-from-anywhere-macos-gatekeeper/).
 
