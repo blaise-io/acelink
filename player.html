@@ -3,7 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>Ace Link</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.6.5/video-js.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.14.1/video-js.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.14.1/video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-media-sources/4.7.2/videojs-contrib-media-sources.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.15.0/videojs-contrib-hls.min.js"></script>
     <style>
         body, html, video, .video-js {
             margin: 0;
@@ -19,14 +22,14 @@
     </style>
 </head>
 <body>
-<video id="v" class="video-js vjs-default-skin" controls autoplay preload></video>
+<video id="v" class="video-js vjs-default-skin" controls autoplay preload width="100%" height="100%"></video>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.6.5/video.js"></script>
 <script>
     const player = videojs("v");
     const id = new URL(location.href).searchParams.get('id') || alert('Missing ?id=');
     const manifest = encodeURIComponent(`http://127.0.0.1:6878/ace/getstream?id=${id}`);
     player.src({
-        src: `http://127.0.0.1:6878/hls/manifest.m3u8?id=${manifest}`,
+        src: `http://127.0.0.1:6878/hls/manifest.m3u8?manifest_url=${manifest}`,
         type: 'application/x-mpegURL',
     });
     document.title += ` – ${id.substr(0, 7)}`;

@@ -19,6 +19,9 @@
 		4DB4E6732108FA7300C2F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */; };
 		4DB4E6762108FA7300C2F1F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E6742108FA7300C2F1F2 /* Main.storyboard */; };
 		4DB4E67F210B2F3600C2F1F2 /* StartDocker.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */; };
+		4DE97F2C26A4597C00432554 /* acestream.conf in Resources */ = {isa = PBXBuildFile; fileRef = 4DE97F2B26A4597C00432554 /* acestream.conf */; };
+		4DE97F2E26A45F6B00432554 /* player.html in Resources */ = {isa = PBXBuildFile; fileRef = 4DE97F2D26A45F6B00432554 /* player.html */; };
+		4DE97F3026A4652900432554 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DE97F2F26A4652900432554 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,9 @@
 		4DB4E6772108FA7300C2F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DB4E6782108FA7300C2F1F2 /* Ace_Link.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ace_Link.entitlements; sourceTree = "<group>"; };
 		4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = StartDocker.sh; sourceTree = "<group>"; };
+		4DE97F2B26A4597C00432554 /* acestream.conf */ = {isa = PBXFileReference; lastKnownFileType = file; path = acestream.conf; sourceTree = SOURCE_ROOT; };
+		4DE97F2D26A45F6B00432554 /* player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = player.html; sourceTree = SOURCE_ROOT; };
+		4DE97F2F26A4652900432554 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +96,10 @@
 				4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */,
 				4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */,
 				4D0A4B34210BBC6800BF7929 /* StopDocker.sh */,
+				4DE97F2D26A45F6B00432554 /* player.html */,
 				4DB4E6772108FA7300C2F1F2 /* Info.plist */,
+				4DE97F2F26A4652900432554 /* README.md */,
+				4DE97F2B26A4597C00432554 /* acestream.conf */,
 			);
 			path = "Ace Link";
 			sourceTree = "<group>";
@@ -155,9 +164,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D0A4B35210BBCB100BF7929 /* StopDocker.sh in Resources */,
+				4DE97F2C26A4597C00432554 /* acestream.conf in Resources */,
 				4DB4E67F210B2F3600C2F1F2 /* StartDocker.sh in Resources */,
+				4DE97F2E26A45F6B00432554 /* player.html in Resources */,
 				4DB4E6732108FA7300C2F1F2 /* Assets.xcassets in Resources */,
 				4D0CFED82427B04000264B83 /* VERSION in Resources */,
+				4DE97F3026A4652900432554 /* README.md in Resources */,
 				4D5478E0240158DF00A954E8 /* Dockerfile in Resources */,
 				4DB4E6762108FA7300C2F1F2 /* Main.storyboard in Resources */,
 			);
