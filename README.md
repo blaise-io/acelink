@@ -6,7 +6,7 @@ Paste an Ace Stream hash in the Ace Link menu. Ace Link will launch the Ace Stre
 
 Install Ace Link via the link below or using [Homebrew](https://brew.sh): `brew install --cask ace-link`
 
-## [Download for macOS](https://github.com/blaise-io/acelink/releases/download/1.8.0/Ace.Link.1.8.0.dmg)
+## [Download for macOS](https://github.com/blaise-io/acelink/releases/download/1.9.0/Ace.Link.1.9.0.dmg)
 
 Requires VLC, Docker and macOS High Sierra (10.13) or higher.
 
