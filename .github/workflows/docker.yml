@@ -1,9 +1,12 @@
 name: Build and push blaiseio/acelink
 
 on:
-  push:
-    paths:
-      - '*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag'
+        required: true
+        default: 'latest'
 
 jobs:
   docker:
@@ -31,4 +34,4 @@ jobs:
           context: .
           platforms: docker linux/amd64,linux/arm64,darwin/amd64,darwin/arm64
           push: true
-          tags: blaiseio/acelink:test
+          tags: blaiseio/acelink:${{ github.event.inputs.tag }}
