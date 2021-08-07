@@ -26,7 +26,7 @@ release:
 
 release-tag:
 	# Create a new release tag
-	git tag $(VERSION)
+	git tag $(VERSION) -f
 	git push origin --tags
 
 .PHONY: $(MAKECMDGOALS)
