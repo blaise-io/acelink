@@ -41,4 +41,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: blaiseio/acelink:${{ github.event.release.tag_name }}
+          tags: blaiseio/acelink:${{ GITHUB_REF##*/ }}
