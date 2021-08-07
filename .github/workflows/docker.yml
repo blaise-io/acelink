@@ -2,8 +2,9 @@ name: Build and push blaiseio/acelink
 
 on:
   push:
-    tags: ['[0-9].[0-9]+.[0-9]+']
     branches: [master]
+  release:
+    types: [published]
 
 jobs:
   docker:
@@ -36,9 +37,9 @@ jobs:
       -
         name: Build and push
         uses: docker/build-push-action@v2
-        if: ${{ github.ref != 'refs/heads/master' }}
+        if: ${{ github.event.release.tag_name }}
         with:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: blaiseio/acelink:${{ GITHUB_REF##*/ }}
+          tags: blaiseio/acelink:${{ github.event.release.tag_name }}
