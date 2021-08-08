@@ -2,9 +2,7 @@
 FROM debian:9-slim
 
 # Install system packages
-RUN --mount=type=cache,target=/var/cache \
-    --mount=type=cache,target=/var/lib/apt/lists \
-    --mount=type=tmpfs,target=/tmp \
+RUN set -ex && \
     sed -i 's/deb http:\/\/security.debian.org/#/g' /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -yq --no-install-recommends \
@@ -15,7 +13,9 @@ RUN --mount=type=cache,target=/var/cache \
         python-m2crypto \
         python-apsw \
         python-lxml \
-        sqlite3
+        sqlite3 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /var/cache/*
 
 # Install Ace Stream from local mirror
 ADD thirdparty/acestream_3.1.49_debian_9.9_x86_64.tar.gz /opt/acestream
