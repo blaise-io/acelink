@@ -6,6 +6,7 @@ class StatusMenu: NSMenu {
     let dockerMenu = InstallDockerMenu()
     let vlcMenu = InstallVLCMenu()
     let openStreamMenu = OpenStreamMenu()
+    let historyMenu = HistoryMenu()
 
     let dependenciesStatusItem = NSMenuItem(
         title: "Dependencies set up",
@@ -41,6 +42,7 @@ class StatusMenu: NSMenu {
         dockerMenu.addItems(self)
         vlcMenu.addItems(self)
         openStreamMenu.addItems(self)
+        historyMenu.addItems(self)
         updateMenu.addItems(self)
 
         self.addItem(NSMenuItem.separator())
@@ -78,6 +80,7 @@ class StatusMenu: NSMenu {
         let isAllInstalled = isDockerInstalled && isVLCInstalled
 
         openStreamMenu.updateItems(dependenciesInstalled: isAllInstalled)
+        historyMenu.updateItems(dependenciesInstalled: isAllInstalled)
         dockerMenu.updateItems(dependenciesInstalled: isDockerInstalled)
         vlcMenu.updateItems(dependenciesInstalled: isVLCInstalled)
 

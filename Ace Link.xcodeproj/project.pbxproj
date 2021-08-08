@@ -19,6 +19,7 @@
 		4DB4E6732108FA7300C2F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */; };
 		4DB4E6762108FA7300C2F1F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E6742108FA7300C2F1F2 /* Main.storyboard */; };
 		4DB4E67F210B2F3600C2F1F2 /* StartDocker.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */; };
+		4DCF492926BFF70000A54904 /* HistoryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCF492826BFF70000A54904 /* HistoryMenu.swift */; };
 		4DE97F2C26A4597C00432554 /* acestream.conf in Resources */ = {isa = PBXBuildFile; fileRef = 4DE97F2B26A4597C00432554 /* acestream.conf */; };
 		4DE97F2E26A45F6B00432554 /* player.html in Resources */ = {isa = PBXBuildFile; fileRef = 4DE97F2D26A45F6B00432554 /* player.html */; };
 		4DE97F3026A4652900432554 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DE97F2F26A4652900432554 /* README.md */; };
@@ -40,7 +41,8 @@
 		4DB4E6772108FA7300C2F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DB4E6782108FA7300C2F1F2 /* Ace_Link.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ace_Link.entitlements; sourceTree = "<group>"; };
 		4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = StartDocker.sh; sourceTree = "<group>"; };
-		4DE97F2B26A4597C00432554 /* acestream.conf */ = {isa = PBXFileReference; lastKnownFileType = file; path = acestream.conf; sourceTree = SOURCE_ROOT; };
+		4DCF492826BFF70000A54904 /* HistoryMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMenu.swift; sourceTree = "<group>"; };
+		4DE97F2B26A4597C00432554 /* acestream.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = acestream.conf; sourceTree = SOURCE_ROOT; };
 		4DE97F2D26A45F6B00432554 /* player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = player.html; sourceTree = SOURCE_ROOT; };
 		4DE97F2F26A4652900432554 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 				4D0CFED32427934000264B83 /* InstallVLCMenu.swift */,
 				4D0CFED52427947900264B83 /* OpenStreamMenu.swift */,
 				4D0CFECF24278D0900264B83 /* UpdateMenu.swift */,
+				4DCF492826BFF70000A54904 /* HistoryMenu.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			files = (
 				4D264644210CE84800B0570A /* StatusMenu.swift in Sources */,
 				4D0CFED224278D8400264B83 /* InstallDockerMenu.swift in Sources */,
+				4DCF492926BFF70000A54904 /* HistoryMenu.swift in Sources */,
 				4D0CFED024278D0900264B83 /* UpdateMenu.swift in Sources */,
 				4D0CFED42427934000264B83 /* InstallVLCMenu.swift in Sources */,
 				4D0CFED62427947900264B83 /* OpenStreamMenu.swift in Sources */,
