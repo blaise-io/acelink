@@ -1,11 +1,13 @@
+# syntax=docker/dockerfile:experimental
 FROM debian:9-slim
 
-RUN apt-get update
-
-# Ignore private security packages.
-RUN sed -i 's/deb http:\/\/security.debian.org/#/g' /etc/apt/sources.list
-
-RUN apt-get install -yq --no-install-recommends \
+# Install system packages
+RUN --mount=type=cache,target=/var/cache \
+    --mount=type=cache,target=/var/lib/apt/lists \
+    --mount=type=tmpfs,target=/tmp \
+    sed -i 's/deb http:\/\/security.debian.org/#/g' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -yq --no-install-recommends \
         libpython2.7 \
         net-tools \
         python-minimal \
@@ -13,17 +15,10 @@ RUN apt-get install -yq --no-install-recommends \
         python-m2crypto \
         python-apsw \
         python-lxml \
-        sqlite3 \
-        wget
+        sqlite3
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /var/cache/*
-
-# Install Ace Stream
-# https://wiki.acestream.media/Download#Linux
-RUN mkdir -p /opt/acestream
-RUN wget -qO- "http://acestream.org/downloads/linux/acestream_3.1.49_debian_9.9_x86_64.tar.gz" | \
-        tar --extract --gzip -C /opt/acestream
-
+# Install Ace Stream from local mirror
+ADD thirdparty/acestream_3.1.49_debian_9.9_x86_64.tar.gz /opt/acestream
 COPY acestream.conf /opt/acestream/acestream.conf
 
 # Overwrite non-functional Ace Stream web player with our own experimental web player,
