@@ -14,7 +14,7 @@ class HistoryMenu {
         absStreamsDir = (NSHomeDirectory() as NSString).appendingPathComponent(relStreamsDir)
     }
 
-    func get_history() -> [String] {
+    func getHistory() -> [String] {
         do {
             try FileManager.default.createDirectory(atPath: absStreamsDir, withIntermediateDirectories: true, attributes: nil)
         } catch let error as NSError {
@@ -30,7 +30,7 @@ class HistoryMenu {
         }
     }
 
-    func filter_dir(files: [String]) -> [String] {
+    func filterCompatibleFiles(files: [String]) -> [String] {
         return files.filter { word in
             return word.hasSuffix(".m3u8")
         }
@@ -50,7 +50,7 @@ class HistoryMenu {
     }
 
     func setSubmenuItems(isEnabled: Bool) {
-        let fileList = filter_dir(files: get_history())
+        let fileList = filterCompatibleFiles(files: getHistory())
 
         let item = NSMenuItem(
             title: "Manage history in Finder...",
@@ -93,8 +93,6 @@ class HistoryMenu {
     @objc func openHistoryFile(_ sender: NSMenuItem?) {
         let file = sender!.representedObject as! String
         let fileAsURL = NSURL(fileURLWithPath: absStreamsDir).appendingPathComponent(file)!
-
-        os_log("%{public}@", fileAsURL.absoluteString)
 
         do {
             let fileContents = try String(contentsOf: fileAsURL, encoding: .utf8)
