@@ -80,9 +80,9 @@ class StatusMenu: NSMenu {
         let isAllInstalled = isDockerInstalled && isVLCInstalled
 
         openStreamMenu.updateItems(dependenciesInstalled: isAllInstalled)
-        historyMenu.updateItems(dependenciesInstalled: isAllInstalled)
         dockerMenu.updateItems(dependenciesInstalled: isDockerInstalled)
         vlcMenu.updateItems(dependenciesInstalled: isVLCInstalled)
+        historyMenu.updateItems(dependenciesInstalled: isAllInstalled)
 
         dependenciesStatusItem.isHidden = !isAllInstalled
     }

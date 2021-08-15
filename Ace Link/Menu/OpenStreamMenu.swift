@@ -2,7 +2,6 @@ import os
 import Cocoa
 import Foundation
 
-
 class OpenStreamMenu {
 
     let openStreamItem = NSMenuItem(
