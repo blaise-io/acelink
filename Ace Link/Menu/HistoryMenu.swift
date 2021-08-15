@@ -17,15 +17,15 @@ class HistoryMenu {
     func getHistory() -> [String] {
         do {
             try FileManager.default.createDirectory(atPath: absStreamsDir, withIntermediateDirectories: true, attributes: nil)
-        } catch let error as NSError {
-            os_log("Unable to create directory %{public}@", error.debugDescription)
+        } catch {
+            os_log("Unable to create directory %{public}@: %{public}@", absStreamsDir, error.localizedDescription)
             return []
         }
 
         do {
             return try FileManager.default.contentsOfDirectory(atPath: absStreamsDir)
         } catch {
-            os_log("%{public}@", error.localizedDescription)
+            os_log("Cannot read dir contents %{public}@: %{public}@", absStreamsDir, error.localizedDescription)
             return []
         }
     }
