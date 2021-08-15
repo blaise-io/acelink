@@ -53,8 +53,8 @@ class HistoryMenu {
         let fileList = filterCompatibleFiles(files: getHistory())
 
         let item = NSMenuItem(
-            title: "Manage history in Finder...",
-            action: #selector(openHistoryDir(_:)),
+            title: "Manage history…",
+            action: #selector(openInFinder(_:)),
             keyEquivalent: "H"
         )
         item.target = self
@@ -73,20 +73,7 @@ class HistoryMenu {
         }
     }
 
-    func matches(for regex: String, in text: String) -> [String] {
-        do {
-            let regex = try NSRegularExpression(pattern: regex)
-            let results = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
-            return results.map {
-                String(text[Range($0.range, in: text)!])
-            }
-        } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
-            return []
-        }
-    }
-
-    @objc func openHistoryDir(_ sender: NSMenuItem?) {
+    @objc func openInFinder(_ sender: NSMenuItem?) {
         NSWorkspace.shared.openFile(absStreamsDir)
     }
 
