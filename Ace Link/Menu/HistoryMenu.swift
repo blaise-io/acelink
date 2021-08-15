@@ -11,9 +11,10 @@ class HistoryMenu {
 
     init() {
         relStreamsDir = "/Library/Application Support/Ace Link/streams"
-        absStreamsDir = (NSHomeDirectory() as NSString).appendingPathComponent(relStreamsDir)
+        absStreamsDir = (NSHomeDirectory() as NSString).appendingPathComponent(relStreamsDir)  // TODO: make URL
     }
 
+    // TODO: sort by last opened first
     func getHistory() -> [String] {
         do {
             try FileManager.default.createDirectory(atPath: absStreamsDir, withIntermediateDirectories: true, attributes: nil)
@@ -79,7 +80,9 @@ class HistoryMenu {
 
     @objc func openHistoryFile(_ sender: NSMenuItem?) {
         let file = sender!.representedObject as! String
-        let fileAsURL = NSURL(fileURLWithPath: absStreamsDir).appendingPathComponent(file)!
+        guard let fileAsURL = NSURL(fileURLWithPath: absStreamsDir).appendingPathComponent(file) else {
+            return
+        }
 
         do {
             let fileContents = try String(contentsOf: fileAsURL, encoding: .utf8)
@@ -93,15 +96,18 @@ class HistoryMenu {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         for line in fileContents.components(separatedBy: CharacterSet.newlines) {
             if line.hasPrefix("http://") {
-                let items = URLComponents(string: line)?.queryItems
-                let acestream = items?.filter({$0.name == "id"}).first
-                if acestream?.value != nil {
-                    appDelegate.openStream(acestream!.value!, type: AppDelegate.StreamType.acestream)
-                } else {
-                    let magnet = items?.filter({$0.name == "infohash"}).first
-                    if magnet?.value != nil {
-                        appDelegate.openStream(magnet!.value!, type: AppDelegate.StreamType.magnet)
-                    }
+                guard let items = URLComponents(string: line)?.queryItems else {
+                    return
+                }
+                let acestream = items.filter({$0.name == "id"}).first?.value
+                if acestream != nil {
+                    appDelegate.openStream(acestream!, type: AppDelegate.StreamType.acestream)
+                    return
+                }
+                let magnet = items.filter({$0.name == "infohash"}).first?.value
+                if magnet != nil {
+                    appDelegate.openStream(magnet!, type: AppDelegate.StreamType.magnet)
+                    return
                 }
             }
         }
