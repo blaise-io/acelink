@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D045DCB26D65A1D00D4D816 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D045DCA26D65A1D00D4D816 /* FileManager.swift */; };
+		4D045DCD26D669C900D4D816 /* Makefile in Resources */ = {isa = PBXBuildFile; fileRef = 4D045DCC26D669C900D4D816 /* Makefile */; };
 		4D0A4B35210BBCB100BF7929 /* StopDocker.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4D0A4B34210BBC6800BF7929 /* StopDocker.sh */; };
 		4D0CFED024278D0900264B83 /* UpdateMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFECF24278D0900264B83 /* UpdateMenu.swift */; };
 		4D0CFED224278D8400264B83 /* InstallDockerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFED124278D8400264B83 /* InstallDockerMenu.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		4D045DCA26D65A1D00D4D816 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		4D045DCC26D669C900D4D816 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile; sourceTree = SOURCE_ROOT; };
 		4D0A4B34210BBC6800BF7929 /* StopDocker.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = StopDocker.sh; sourceTree = "<group>"; };
 		4D0CFECF24278D0900264B83 /* UpdateMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenu.swift; sourceTree = "<group>"; };
 		4D0CFED124278D8400264B83 /* InstallDockerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallDockerMenu.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				4D5478DF240158DE00A954E8 /* Dockerfile */,
 				4D045DC926D65A0700D4D816 /* Extensions */,
 				4DB4E6772108FA7300C2F1F2 /* Info.plist */,
+				4D045DCC26D669C900D4D816 /* Makefile */,
 				4DB4E6742108FA7300C2F1F2 /* Main.storyboard */,
 				4D0CFECB2427846700264B83 /* Menu */,
 				4DE97F2D26A45F6B00432554 /* player.html */,
@@ -177,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D045DCD26D669C900D4D816 /* Makefile in Resources */,
 				4D0A4B35210BBCB100BF7929 /* StopDocker.sh in Resources */,
 				4DE97F2C26A4597C00432554 /* acestream.conf in Resources */,
 				4DB4E67F210B2F3600C2F1F2 /* StartDocker.sh in Resources */,
