@@ -71,6 +71,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func openStream(_ hash: String, type: StreamType) {
         os_log("Open stream")
+        // TODO: statusItem.popUpMenu(statusItem.menu!)
+        // TODO: rewrite StartDocker.sh in Swift and show progress in a status item
 
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         let scriptName = "StartDocker.sh"
@@ -108,11 +110,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             os_log("%{public}@ ran successfully", scriptName)
             vlcLaunched = true
             return
+        } else {
+            let formattedError = "\(message) (code \(exitCode))"
+            error(formattedError)
+            os_log("%{public}@ error: %{public}@", type: .error, scriptName, formattedError)
         }
-
-        let formattedError = "\(message) (code \(exitCode))"
-        error(formattedError)
-        os_log("%{public}@ error: %{public}@", type: .error, scriptName, formattedError)
     }
 
     func error(_ text: String) {

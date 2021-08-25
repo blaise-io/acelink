@@ -3,37 +3,33 @@ import Cocoa
 import Foundation
 
 class HistoryMenu {
-    var relStreamsDir: String
-    var absStreamsDir: String
-    var submenu: NSMenu = NSMenu()
-    var parentmenu: NSMenu = NSMenu()
-    var parent = NSMenuItem(title: "History", action: nil, keyEquivalent: "")
+    var historyAbsoluteDir: String
+    var historySubmenu: NSMenu = NSMenu()
+    var historyMenuItem = NSMenuItem(title: "History", action: nil, keyEquivalent: "")
 
     init() {
-        relStreamsDir = "/Library/Application Support/Ace Link/streams"
-        absStreamsDir = (NSHomeDirectory() as NSString).appendingPathComponent(relStreamsDir)  // TODO: make URL
+        let historyRelativeDir = "/Library/Application Support/Ace Link/streams"
+        historyAbsoluteDir = (NSHomeDirectory() as NSString).appendingPathComponent(historyRelativeDir)
     }
 
-    // TODO: sort by last opened first
-    func getHistory() -> [String] {
+    func getHistory() -> [URL] {
         do {
-            try FileManager.default.createDirectory(atPath: absStreamsDir, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: historyAbsoluteDir, withIntermediateDirectories: true, attributes: nil)
         } catch {
-            os_log("Unable to create directory %{public}@: %{public}@", absStreamsDir, error.localizedDescription)
+            os_log("Unable to create directory %{public}@: %{public}@", historyAbsoluteDir, error.localizedDescription)
             return []
         }
-
         do {
-            return try FileManager.default.contentsOfDirectory(atPath: absStreamsDir)
+            return try FileManager().contentsOfDirectory(atURL: URL(fileURLWithPath: historyAbsoluteDir), sortedBy: .accessed, ascending: false)!
         } catch {
-            os_log("Cannot read dir contents %{public}@: %{public}@", absStreamsDir, error.localizedDescription)
+            os_log("Unable to read directory %{public}@: %{public}@", historyAbsoluteDir, error.localizedDescription)
             return []
         }
     }
 
-    func filterCompatibleFiles(files: [String]) -> [String] {
-        return files.filter { word in
-            return word.hasSuffix(".m3u8")
+    func filterCompatibleFiles(files: [URL]) -> [URL] {
+        return files.filter { file in
+            return file.pathExtension == "m3u8"
         }
     }
 
@@ -41,54 +37,53 @@ class HistoryMenu {
     }
 
     func addItems(_ menu: NSMenu) {
-        menu.addItem(parent)
-        menu.setSubmenu(submenu, for: parent)
+        menu.addItem(historyMenuItem)
+        menu.setSubmenu(historySubmenu, for: historyMenuItem)
     }
 
     func updateItems(dependenciesInstalled: Bool) {
-        submenu.removeAllItems()
+        historySubmenu.removeAllItems()
         self.setSubmenuItems(isEnabled: dependenciesInstalled)
     }
 
     func setSubmenuItems(isEnabled: Bool) {
-        let fileList = filterCompatibleFiles(files: getHistory())
+        let files = filterCompatibleFiles(files: getHistory())
+        historyMenuItem.isEnabled = !files.isEmpty
 
-        let item = NSMenuItem(
-            title: "Manage history…",
-            action: #selector(openInFinder(_:)),
-            keyEquivalent: "H"
-        )
-        item.target = self
-        item.isEnabled = isEnabled
-        submenu.addItem(item)
-
-        for file in fileList {
+        if !files.isEmpty {
             let item = NSMenuItem(
-                title: file.replacingOccurrences(of: ".m3u8", with: ""),
+                title: "Manage history…",
+                action: #selector(openInFinder(_:)),
+                keyEquivalent: "H"
+            )
+            item.target = self
+            item.isEnabled = isEnabled
+            historySubmenu.addItem(item)
+        }
+
+        for file in files {
+            let item = NSMenuItem(
+                title: file.deletingPathExtension().lastPathComponent,
                 action: #selector(self.openHistoryFile(_:)),
                 keyEquivalent: ""
             )
             item.target = self
             item.representedObject = file
-            submenu.addItem(item)
+            historySubmenu.addItem(item)
         }
     }
 
     @objc func openInFinder(_ sender: NSMenuItem?) {
-        NSWorkspace.shared.openFile(absStreamsDir)
+        NSWorkspace.shared.openFile(historyAbsoluteDir)
     }
 
     @objc func openHistoryFile(_ sender: NSMenuItem?) {
-        let file = sender!.representedObject as! String
-        guard let fileAsURL = NSURL(fileURLWithPath: absStreamsDir).appendingPathComponent(file) else {
-            return
-        }
-
+        let file = sender!.representedObject as! URL
         do {
-            let fileContents = try String(contentsOf: fileAsURL, encoding: .utf8)
+            let fileContents = try String(contentsOf: file, encoding: .utf8)
             openAsStream(fileContents: fileContents)
         } catch {
-            os_log("Could not open file: %{public}@", fileAsURL.absoluteString)
+            os_log("Could not open file: %{public}@", file.absoluteString)
         }
     }
 
@@ -99,14 +94,14 @@ class HistoryMenu {
                 guard let items = URLComponents(string: line)?.queryItems else {
                     return
                 }
-                let acestream = items.filter({$0.name == "id"}).first?.value
-                if acestream != nil {
-                    appDelegate.openStream(acestream!, type: AppDelegate.StreamType.acestream)
+                let id = items.filter({$0.name == "id"}).first?.value
+                if id != nil {
+                    appDelegate.openStream(id!, type: AppDelegate.StreamType.acestream)
                     return
                 }
-                let magnet = items.filter({$0.name == "infohash"}).first?.value
-                if magnet != nil {
-                    appDelegate.openStream(magnet!, type: AppDelegate.StreamType.magnet)
+                let infohash = items.filter({$0.name == "infohash"}).first?.value
+                if infohash != nil {
+                    appDelegate.openStream(infohash!, type: AppDelegate.StreamType.magnet)
                     return
                 }
             }

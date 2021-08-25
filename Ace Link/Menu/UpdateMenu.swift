@@ -41,7 +41,7 @@ class UpdateMenu {
             let tag_name: String
         }
 
-        URLSession.shared.dataTask(with: url) { data, _, error in
+        URLSession(configuration: .ephemeral).dataTask(with: url) { data, _, error in
             if let data = data {
                 do {
                     let result = try JSONDecoder().decode(Response.self, from: data)
