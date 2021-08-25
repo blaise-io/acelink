@@ -9,7 +9,7 @@ build:
 	xcodebuild -scheme 'Ace Link' archive -archivePath $(ARCHIVEDIR)
 
 release:
-	# Create a new release DMG form a build
+	# Create a new release DMG from a build
 	rm -rf $(RELEASEDIR)
 	mkdir -p $(RELEASEDIR)
 	cp -R '$(ARCHIVEDIR)/Products/Applications/Ace Link.app' $(RELEASEDIR)

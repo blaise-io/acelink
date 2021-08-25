@@ -2,7 +2,6 @@ import os
 import Cocoa
 import Foundation
 
-
 class InstallDockerMenu {
     let downloadURL = "https://download.docker.com/mac/stable/Docker.dmg"
 

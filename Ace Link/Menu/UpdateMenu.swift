@@ -2,7 +2,6 @@ import os
 import Cocoa
 import Foundation
 
-
 class UpdateMenu {
     let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
     let aceLinkDownloadLatestUrl = "https://github.com/blaise-io/acelink/releases/latest"
@@ -20,7 +19,7 @@ class UpdateMenu {
         updateAvailableItem.target = self
         updateAvailableItem.isHidden = true
 
-        DispatchQueue.main.async() {
+        DispatchQueue.main.async {
             self.checkNewReleaseAvailable()
         }
     }
@@ -42,7 +41,7 @@ class UpdateMenu {
             let tag_name: String
         }
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession(configuration: .ephemeral).dataTask(with: url) { data, _, error in
             if let data = data {
                 do {
                     let result = try JSONDecoder().decode(Response.self, from: data)

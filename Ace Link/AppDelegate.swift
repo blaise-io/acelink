@@ -1,11 +1,10 @@
 import os
 import Cocoa
 
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    private var vlcLaunched = false;
+    private var vlcLaunched = false
     private enum Constants {
         static let magnetStreamProtocol = "magnet"
         static let magnetStreamUrlBeginning = Constants.magnetStreamProtocol + ":?xt=urn:btih:"
@@ -17,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             101: "Cannot connect to Docker",
             102: "Cannot connect to Acestream server",
             103: "Cannot open stream",
-            104: "Cannot launch VLC",
+            104: "Cannot launch VLC"
         ]
     }
 
@@ -27,16 +26,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case none
     }
 
-    let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
-    private func hashFromString(_ string:String) -> String {
+    private func hashFromString(_ string: String) -> String {
         return string.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(
             of: Constants.aceStreamUrlBeginning,
             with: ""
         )
     }
 
-    private func hashFromMagnetString(_ string:String) -> String {
+    private func hashFromMagnetString(_ string: String) -> String {
         let magnetHash = string.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(
                 of: Constants.magnetStreamUrlBeginning,
                 with: ""
@@ -48,7 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if token.isEmpty {
             return ""
         } else {
-            return token[0];
+            return token[0]
         }
     }
 
@@ -56,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         os_log("Application finished loading")
 
         if let button = statusItem.button {
-            button.image = NSImage(named:"StatusBarIcon")
+            button.image = NSImage(named: "StatusBarIcon")
         }
 
         statusItem.menu = StatusMenu(title: "")
@@ -72,6 +71,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func openStream(_ hash: String, type: StreamType) {
         os_log("Open stream")
+        // TODO: statusItem.popUpMenu(statusItem.menu!)
+        // TODO: rewrite StartDocker.sh in Swift and show progress in a status item
 
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         let scriptName = "StartDocker.sh"
@@ -92,7 +93,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         process.environment = ProcessInfo.processInfo.environment
         process.environment!["image"] = "blaiseio/acelink:" + version
         process.environment!["hash"] = hash
-        if (type == StreamType.magnet) {
+        if type == StreamType.magnet {
             process.environment!["stream_id_param"] = "infohash"
         } else {
             process.environment!["stream_id_param"] = "id"
@@ -107,13 +108,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         if exitCode == 0 {
             os_log("%{public}@ ran successfully", scriptName)
-            vlcLaunched = true;
+            vlcLaunched = true
             return
+        } else {
+            let formattedError = "\(message) (code \(exitCode))"
+            error(formattedError)
+            os_log("%{public}@ error: %{public}@", type: .error, scriptName, formattedError)
         }
-
-        let formattedError = "\(message) (code \(exitCode))"
-        error(formattedError)
-        os_log("%{public}@ error: %{public}@", type: .error, scriptName, formattedError)
     }
 
     func error(_ text: String) {
@@ -132,7 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let task = Process.launchedProcess(launchPath: path, arguments: [])
         task.waitUntilExit()
         if task.terminationStatus == 0 {
-            vlcLaunched = false;
+            vlcLaunched = false
             os_log("Stop stream done")
         }
     }
@@ -144,7 +145,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return StreamType.none
         }
 
-        if clipboardData?.range(of:Constants.magnetStreamProtocol) != nil {
+        if clipboardData?.range(of: Constants.magnetStreamProtocol) != nil {
             return StreamType.magnet
         } else {
             return StreamType.acestream
@@ -160,14 +161,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let clipboardString: String
 
-        if clipboardData?.range(of:Constants.magnetStreamProtocol) != nil {
+        if clipboardData?.range(of: Constants.magnetStreamProtocol) != nil {
             clipboardString = hashFromMagnetString(clipboardData!)
         } else {
             clipboardString = hashFromString(clipboardData!)
         }
 
         // Verify conform SHA1
-        let range = NSMakeRange(0, clipboardString.count)
+        let range = NSRange(location: 0, length: clipboardString.count)
         let regex = try! NSRegularExpression(
             pattern: "^[a-fA-F0-9]{40}$",
             options: NSRegularExpression.Options.caseInsensitive
@@ -194,8 +195,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         if app.bundleIdentifier == Constants.vlcBundleId && self.vlcLaunched {
-            os_log("VLC closed by user");
-            self.stopStream();
+            os_log("VLC closed by user")
+            self.stopStream()
         }
     }
 
@@ -211,7 +212,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         if urlComponents.scheme == Constants.aceStreamProtocol {
-            if url.absoluteString.range(of:Constants.magnetStreamProtocol) != nil {
+            if url.absoluteString.range(of: Constants.magnetStreamProtocol) != nil {
                 openStream(hashFromMagnetString(url.absoluteString), type: StreamType.magnet)
             } else {
                 openStream(hashFromString(url.absoluteString), type: StreamType.acestream)

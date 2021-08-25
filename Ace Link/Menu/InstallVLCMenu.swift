@@ -2,7 +2,6 @@ import os
 import Cocoa
 import Foundation
 
-
 class InstallVLCMenu {
     let downloadURL = "https://www.videolan.org/vlc/download-macosx.html"
 
