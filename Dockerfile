@@ -13,12 +13,19 @@ RUN set -ex && \
         python-m2crypto \
         python-apsw \
         python-lxml \
-        sqlite3 && \
+        sqlite3 \
+        wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /var/cache/*
 
-# Install Ace Stream from local mirror
-ADD thirdparty/acestream_3.1.49_debian_9.9_x86_64.tar.gz /opt/acestream
+# Install Ace Stream
+# https://wiki.acestream.media/Download#Linux
+RUN mkdir -p /opt/acestream && \
+    wget --quiet --output-document acetream.tgz "http://acestream.org/downloads/linux/acestream_3.1.49_debian_9.9_x86_64.tar.gz" && \
+    echo "13cabf1882a730eb1558b63835512d14384688fc26b21651cfaa21e8e2ff7dda acetream.tgz" | sha256sum --check && \
+    tar --extract --gzip --directory /opt/acestream --file acetream.tgz && \
+    rm -rf acetream.tgz
+
 COPY acestream.conf /opt/acestream/acestream.conf
 
 # Overwrite non-functional Ace Stream web player with our own experimental web player,
