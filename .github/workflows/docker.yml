@@ -40,6 +40,6 @@ jobs:
         if: ${{ github.event.release.tag_name }}
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64  # linux/arm64 see above
           push: true
           tags: blaiseio/acelink:${{ github.event.release.tag_name }}
