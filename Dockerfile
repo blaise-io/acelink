@@ -32,6 +32,7 @@ COPY player.html /opt/acestream/data/webui/html/player.html
 # Prep dir
 RUN mkdir /acelink
 
+COPY acestream.conf /opt/acestream/acestream.conf
 ENTRYPOINT ["/opt/acestream/start-engine", "@/opt/acestream/acestream.conf"]
 
 HEALTHCHECK CMD nc -zv localhost 6878 || exit 1
