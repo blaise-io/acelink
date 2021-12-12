@@ -1,0 +1,11 @@
+# https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md
+--funcattributes prev-line
+--guardelse same-line
+--maxwidth 100
+--swiftversion 5.5
+--wraparguments before-first
+--wrapcollections before-first
+
+# Incompatible with swiftlint
+--disable trailingCommas
+--disable wrapMultilineStatementBraces

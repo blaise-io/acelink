@@ -10,7 +10,7 @@ assignees: blaise-io
 **Describe the bug**  
 …  
 
-Note: Don't share Acestream IDs or websites containing pirated content.
+Note: Don't share AceStream IDs or websites containing pirated content.
 
 **What I expected to happen**  
 …

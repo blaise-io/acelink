@@ -3,13 +3,17 @@ ARCHIVEDIR ?= $(CURDIR)/builds/archives/Ace.Link.$(VERSION).xcarchive
 RELEASEDIR ?= $(CURDIR)/builds/Ace.Link.$(VERSION)
 DOCKER_BUILDKIT ?= 1
 
+docker:
+	# Create docker image
+	docker build . --tag blaiseio/acelink:$(VERSION) --progress=plain
+	
 build:
 	# Create a build
 	agvtool new-marketing-version $(VERSION)
 	xcodebuild -scheme 'Ace Link' archive -archivePath $(ARCHIVEDIR)
 
 release:
-	# Create a new release DMG from a build
+	# Create a new release DMG from the latest build
 	rm -rf $(RELEASEDIR)
 	mkdir -p $(RELEASEDIR)
 	cp -R '$(ARCHIVEDIR)/Products/Applications/Ace Link.app' $(RELEASEDIR)
@@ -23,5 +27,3 @@ release-tag:
 	# Create a new release tag
 	git tag $(VERSION)
 	git push origin --tags
-
-.PHONY: $(MAKECMDGOALS)

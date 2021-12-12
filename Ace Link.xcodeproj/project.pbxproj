@@ -7,48 +7,96 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D045DCB26D65A1D00D4D816 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D045DCA26D65A1D00D4D816 /* FileManager.swift */; };
 		4D045DCD26D669C900D4D816 /* Makefile in Resources */ = {isa = PBXBuildFile; fileRef = 4D045DCC26D669C900D4D816 /* Makefile */; };
-		4D0A4B35210BBCB100BF7929 /* StopDocker.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4D0A4B34210BBC6800BF7929 /* StopDocker.sh */; };
 		4D0CFED024278D0900264B83 /* UpdateMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFECF24278D0900264B83 /* UpdateMenu.swift */; };
 		4D0CFED224278D8400264B83 /* InstallDockerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFED124278D8400264B83 /* InstallDockerMenu.swift */; };
-		4D0CFED42427934000264B83 /* InstallVLCMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFED32427934000264B83 /* InstallVLCMenu.swift */; };
 		4D0CFED62427947900264B83 /* OpenStreamMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0CFED52427947900264B83 /* OpenStreamMenu.swift */; };
 		4D0CFED82427B04000264B83 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 4D0CFED72427B04000264B83 /* VERSION */; };
-		4D264644210CE84800B0570A /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D264643210CE84800B0570A /* StatusMenu.swift */; };
+		4D264644210CE84800B0570A /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D264643210CE84800B0570A /* MainMenu.swift */; };
 		4D5478E0240158DF00A954E8 /* Dockerfile in Resources */ = {isa = PBXBuildFile; fileRef = 4D5478DF240158DE00A954E8 /* Dockerfile */; };
+		4D867EEB2761340800EC726E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D867EEA2761340800EC726E /* main.swift */; };
+		4D9442722722EAA800D11C91 /* SelectPlayerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9442712722EAA800D11C91 /* SelectPlayerMenu.swift */; };
+		4D94427627259F4E00D11C91 /* StreamFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94427527259F4D00D11C91 /* StreamFile.swift */; };
 		4DB4E66F2108FA7200C2F1F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */; };
 		4DB4E6732108FA7300C2F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */; };
-		4DB4E6762108FA7300C2F1F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E6742108FA7300C2F1F2 /* Main.storyboard */; };
-		4DB4E67F210B2F3600C2F1F2 /* StartDocker.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */; };
 		4DCF492926BFF70000A54904 /* HistoryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCF492826BFF70000A54904 /* HistoryMenu.swift */; };
-		4DE97F2C26A4597C00432554 /* acestream.conf in Resources */ = {isa = PBXBuildFile; fileRef = 4DE97F2B26A4597C00432554 /* acestream.conf */; };
 		4DE97F2E26A45F6B00432554 /* player.html in Resources */ = {isa = PBXBuildFile; fileRef = 4DE97F2D26A45F6B00432554 /* player.html */; };
 		4DE97F3026A4652900432554 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DE97F2F26A4652900432554 /* README.md */; };
+		AD5A8022FAB8D399F2C0D627 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A88734E6F5BA877F00D41 /* URLSession.swift */; };
+		AD5A80E628235858EAB10D6C /* PlaylistServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8985772955383DE6F9FD /* PlaylistServer.swift */; };
+		AD5A816994F7B6FAEF5AC7F0 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A87A890E9387B4F78C835 /* FileManager.swift */; };
+		AD5A8225147415D74A2F48D3 /* acelink.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5A8FCB503ABA8B866D285D /* acelink.png */; };
+		AD5A82BE61F53B57EE2B4CC6 /* ExtractStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8477B4DB7C74F2732511 /* ExtractStream.swift */; };
+		AD5A8325618CC7EF60F0CD61 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A87DDAC07E90ED69B270F /* String.swift */; };
+		AD5A838924503652F64B72D0 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A89D17F956D6A6D5B8D41 /* LoadingIndicator.swift */; };
+		AD5A83D224284D501D147C43 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = AD5A8D8C4E325373F824A049 /* .swiftformat */; };
+		AD5A84F962215738740BB907 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A858F957E477937BCFBBC /* Process.swift */; };
+		AD5A851516FD7B37B6A5216D /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8F4023FF35C231878AAE /* AppConfig.swift */; };
+		AD5A8710E6D64CC1A15C834A /* DockerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8F85E66D4A2038E37C4C /* DockerEngine.swift */; };
+		AD5A87C16ADD674A83F511DD /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8973E26FCFFC3435160B /* AppConstants.swift */; };
+		AD5A87F8527B2F798B55A8B3 /* acestream.conf in Resources */ = {isa = PBXBuildFile; fileRef = AD5A89B00E3E4D0ED1B81DED /* acestream.conf */; };
+		AD5A8874F6879E0DF60681F5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AD5A8225D690C3597305286E /* .swiftlint.yml */; };
+		AD5A8997FD737B11E1331545 /* AceStreamEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8C0CAECE34378C913A92 /* AceStreamEngine.swift */; };
+		AD5A8AA375A29B3B6B7C4B7F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8936895AD49047CC3118 /* Service.swift */; };
+		AD5A8AFFC8E5D483298F1D99 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A806B5F7355F010954D07 /* AppError.swift */; };
+		AD5A8B1147DBEFCDB64C9215 /* NSAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8F6F082636C5D21A3C6E /* NSAlert.swift */; };
+		AD5A8BAC68DF8FA7D78C1FAC /* StreamPeers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A80670EFB8FEC13A07959 /* StreamPeers.swift */; };
+		AD5A8C534C4A28B340F84D48 /* AceStreamPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A86A22D03052826FE34C3 /* AceStreamPlaylist.swift */; };
+		AD5A8C93E5AA9CAF89B785D4 /* DockerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8EAD6357A8D9E3D66A96 /* DockerImage.swift */; };
+		AD5A8D213856C326D6A81B2A /* PartialMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A889CB9C2FB4EB0E654B2 /* PartialMenu.swift */; };
+		AD5A8DA72773BB04DEBAD5B0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AD5A8D7C4E2554CA007B8BCA /* LICENSE */; };
+		AD5A8DFCB5206824C3DB82D1 /* Pipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A800E3EAF8AB65F34487F /* Pipe.swift */; };
+		AD5A8E1D59A9E6B19EAFB5DD /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8D3A06CEA6D53BEAF667 /* URL.swift */; };
+		AD5A8E98E744D7649436ECEE /* NSWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A86082656212940CC7820 /* NSWorkspace.swift */; };
+		AD5A8FA5870DBB004FDB0279 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5A8CEF5E264FB7E7B48639 /* Bundle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4D045DCA26D65A1D00D4D816 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		4D045DCC26D669C900D4D816 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile; sourceTree = SOURCE_ROOT; };
-		4D0A4B34210BBC6800BF7929 /* StopDocker.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = StopDocker.sh; sourceTree = "<group>"; };
 		4D0CFECF24278D0900264B83 /* UpdateMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenu.swift; sourceTree = "<group>"; };
 		4D0CFED124278D8400264B83 /* InstallDockerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallDockerMenu.swift; sourceTree = "<group>"; };
-		4D0CFED32427934000264B83 /* InstallVLCMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallVLCMenu.swift; sourceTree = "<group>"; };
 		4D0CFED52427947900264B83 /* OpenStreamMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenStreamMenu.swift; sourceTree = "<group>"; };
 		4D0CFED72427B04000264B83 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = SOURCE_ROOT; };
-		4D264643210CE84800B0570A /* StatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
+		4D264643210CE84800B0570A /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		4D5478DF240158DE00A954E8 /* Dockerfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dockerfile; sourceTree = SOURCE_ROOT; };
+		4D867EEA2761340800EC726E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4D9442712722EAA800D11C91 /* SelectPlayerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPlayerMenu.swift; sourceTree = "<group>"; };
+		4D94427527259F4D00D11C91 /* StreamFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamFile.swift; sourceTree = "<group>"; };
 		4DB4E66B2108FA7200C2F1F2 /* Ace Link.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ace Link.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4DB4E6752108FA7300C2F1F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4DB4E6772108FA7300C2F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DB4E6782108FA7300C2F1F2 /* Ace_Link.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ace_Link.entitlements; sourceTree = "<group>"; };
-		4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = StartDocker.sh; sourceTree = "<group>"; };
 		4DCF492826BFF70000A54904 /* HistoryMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMenu.swift; sourceTree = "<group>"; };
-		4DE97F2B26A4597C00432554 /* acestream.conf */ = {isa = PBXFileReference; lastKnownFileType = text; name = acestream.conf; path = "Ace Link/Menu/acestream.conf"; sourceTree = SOURCE_ROOT; };
 		4DE97F2D26A45F6B00432554 /* player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = player.html; sourceTree = SOURCE_ROOT; };
 		4DE97F2F26A4652900432554 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		AD5A800E3EAF8AB65F34487F /* Pipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pipe.swift; sourceTree = "<group>"; };
+		AD5A80670EFB8FEC13A07959 /* StreamPeers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamPeers.swift; sourceTree = "<group>"; };
+		AD5A806B5F7355F010954D07 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		AD5A8225D690C3597305286E /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		AD5A8477B4DB7C74F2732511 /* ExtractStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtractStream.swift; sourceTree = "<group>"; };
+		AD5A858F957E477937BCFBBC /* Process.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
+		AD5A86082656212940CC7820 /* NSWorkspace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSWorkspace.swift; sourceTree = "<group>"; };
+		AD5A86A22D03052826FE34C3 /* AceStreamPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AceStreamPlaylist.swift; sourceTree = "<group>"; };
+		AD5A87A890E9387B4F78C835 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		AD5A87DDAC07E90ED69B270F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		AD5A88734E6F5BA877F00D41 /* URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
+		AD5A889CB9C2FB4EB0E654B2 /* PartialMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialMenu.swift; sourceTree = "<group>"; };
+		AD5A8936895AD49047CC3118 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		AD5A8973E26FCFFC3435160B /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		AD5A8985772955383DE6F9FD /* PlaylistServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistServer.swift; sourceTree = "<group>"; };
+		AD5A89B00E3E4D0ED1B81DED /* acestream.conf */ = {isa = PBXFileReference; lastKnownFileType = file.conf; path = acestream.conf; sourceTree = SOURCE_ROOT; };
+		AD5A89D17F956D6A6D5B8D41 /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		AD5A8C0CAECE34378C913A92 /* AceStreamEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AceStreamEngine.swift; sourceTree = "<group>"; };
+		AD5A8CEF5E264FB7E7B48639 /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		AD5A8D3A06CEA6D53BEAF667 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		AD5A8D7C4E2554CA007B8BCA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		AD5A8D8C4E325373F824A049 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = file.swiftformat; path = .swiftformat; sourceTree = "<group>"; };
+		AD5A8EAD6357A8D9E3D66A96 /* DockerImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockerImage.swift; sourceTree = "<group>"; };
+		AD5A8F4023FF35C231878AAE /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		AD5A8F6F082636C5D21A3C6E /* NSAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAlert.swift; sourceTree = "<group>"; };
+		AD5A8F85E66D4A2038E37C4C /* DockerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockerEngine.swift; sourceTree = "<group>"; };
+		AD5A8FCB503ABA8B866D285D /* acelink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acelink.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,23 +110,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D045DC926D65A0700D4D816 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				4D045DCA26D65A1D00D4D816 /* FileManager.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		4D0CFECB2427846700264B83 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				4D264643210CE84800B0570A /* StatusMenu.swift */,
-				4D0CFED124278D8400264B83 /* InstallDockerMenu.swift */,
-				4D0CFED32427934000264B83 /* InstallVLCMenu.swift */,
-				4D0CFED52427947900264B83 /* OpenStreamMenu.swift */,
-				4D0CFECF24278D0900264B83 /* UpdateMenu.swift */,
 				4DCF492826BFF70000A54904 /* HistoryMenu.swift */,
+				4D0CFED124278D8400264B83 /* InstallDockerMenu.swift */,
+				4D264643210CE84800B0570A /* MainMenu.swift */,
+				4D0CFED52427947900264B83 /* OpenStreamMenu.swift */,
+				AD5A889CB9C2FB4EB0E654B2 /* PartialMenu.swift */,
+				4D9442712722EAA800D11C91 /* SelectPlayerMenu.swift */,
+				4D0CFECF24278D0900264B83 /* UpdateMenu.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -102,23 +143,62 @@
 		4DB4E66D2108FA7200C2F1F2 /* Ace Link */ = {
 			isa = PBXGroup;
 			children = (
-				4DB4E6782108FA7300C2F1F2 /* Ace_Link.entitlements */,
-				4DE97F2B26A4597C00432554 /* acestream.conf */,
+				AD5A86E52FB93F09C4621CD0 /* Extensions */,
+				4D0CFECB2427846700264B83 /* Menu */,
+				AD5A8E51FAA507C8908F14BA /* Services */,
+				4D867EEA2761340800EC726E /* main.swift */,
+				AD5A8F4023FF35C231878AAE /* AppConfig.swift */,
+				AD5A8973E26FCFFC3435160B /* AppConstants.swift */,
 				4DB4E66E2108FA7200C2F1F2 /* AppDelegate.swift */,
+				AD5A8477B4DB7C74F2732511 /* ExtractStream.swift */,
+				AD5A89D17F956D6A6D5B8D41 /* LoadingIndicator.swift */,
+				4D94427527259F4D00D11C91 /* StreamFile.swift */,
+				AD5A8D8C4E325373F824A049 /* .swiftformat */,
+				AD5A8225D690C3597305286E /* .swiftlint.yml */,
+				4DB4E6782108FA7300C2F1F2 /* Ace_Link.entitlements */,
+				AD5A8FCB503ABA8B866D285D /* acelink.png */,
+				AD5A89B00E3E4D0ED1B81DED /* acestream.conf */,
 				4DB4E6722108FA7300C2F1F2 /* Assets.xcassets */,
 				4D5478DF240158DE00A954E8 /* Dockerfile */,
-				4D045DC926D65A0700D4D816 /* Extensions */,
 				4DB4E6772108FA7300C2F1F2 /* Info.plist */,
+				AD5A8D7C4E2554CA007B8BCA /* LICENSE */,
 				4D045DCC26D669C900D4D816 /* Makefile */,
-				4DB4E6742108FA7300C2F1F2 /* Main.storyboard */,
-				4D0CFECB2427846700264B83 /* Menu */,
 				4DE97F2D26A45F6B00432554 /* player.html */,
 				4DE97F2F26A4652900432554 /* README.md */,
-				4DB4E67E210B169C00C2F1F2 /* StartDocker.sh */,
-				4D0A4B34210BBC6800BF7929 /* StopDocker.sh */,
 				4D0CFED72427B04000264B83 /* VERSION */,
 			);
 			path = "Ace Link";
+			sourceTree = "<group>";
+		};
+		AD5A86E52FB93F09C4621CD0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD5A806B5F7355F010954D07 /* AppError.swift */,
+				AD5A8CEF5E264FB7E7B48639 /* Bundle.swift */,
+				AD5A87A890E9387B4F78C835 /* FileManager.swift */,
+				AD5A8F6F082636C5D21A3C6E /* NSAlert.swift */,
+				AD5A86082656212940CC7820 /* NSWorkspace.swift */,
+				AD5A800E3EAF8AB65F34487F /* Pipe.swift */,
+				AD5A858F957E477937BCFBBC /* Process.swift */,
+				AD5A87DDAC07E90ED69B270F /* String.swift */,
+				AD5A8D3A06CEA6D53BEAF667 /* URL.swift */,
+				AD5A88734E6F5BA877F00D41 /* URLSession.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AD5A8E51FAA507C8908F14BA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AD5A8C0CAECE34378C913A92 /* AceStreamEngine.swift */,
+				AD5A86A22D03052826FE34C3 /* AceStreamPlaylist.swift */,
+				AD5A8F85E66D4A2038E37C4C /* DockerEngine.swift */,
+				AD5A8EAD6357A8D9E3D66A96 /* DockerImage.swift */,
+				AD5A8985772955383DE6F9FD /* PlaylistServer.swift */,
+				AD5A8936895AD49047CC3118 /* Service.swift */,
+				AD5A80670EFB8FEC13A07959 /* StreamPeers.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,15 +261,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D045DCD26D669C900D4D816 /* Makefile in Resources */,
-				4D0A4B35210BBCB100BF7929 /* StopDocker.sh in Resources */,
-				4DE97F2C26A4597C00432554 /* acestream.conf in Resources */,
-				4DB4E67F210B2F3600C2F1F2 /* StartDocker.sh in Resources */,
 				4DE97F2E26A45F6B00432554 /* player.html in Resources */,
 				4DB4E6732108FA7300C2F1F2 /* Assets.xcassets in Resources */,
 				4D0CFED82427B04000264B83 /* VERSION in Resources */,
 				4DE97F3026A4652900432554 /* README.md in Resources */,
 				4D5478E0240158DF00A954E8 /* Dockerfile in Resources */,
-				4DB4E6762108FA7300C2F1F2 /* Main.storyboard in Resources */,
+				AD5A83D224284D501D147C43 /* .swiftformat in Resources */,
+				AD5A8874F6879E0DF60681F5 /* .swiftlint.yml in Resources */,
+				AD5A8225147415D74A2F48D3 /* acelink.png in Resources */,
+				AD5A87F8527B2F798B55A8B3 /* acestream.conf in Resources */,
+				AD5A8DA72773BB04DEBAD5B0 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,29 +281,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D264644210CE84800B0570A /* StatusMenu.swift in Sources */,
+				4D9442722722EAA800D11C91 /* SelectPlayerMenu.swift in Sources */,
+				4D94427627259F4E00D11C91 /* StreamFile.swift in Sources */,
+				4D264644210CE84800B0570A /* MainMenu.swift in Sources */,
 				4D0CFED224278D8400264B83 /* InstallDockerMenu.swift in Sources */,
 				4DCF492926BFF70000A54904 /* HistoryMenu.swift in Sources */,
 				4D0CFED024278D0900264B83 /* UpdateMenu.swift in Sources */,
-				4D0CFED42427934000264B83 /* InstallVLCMenu.swift in Sources */,
 				4D0CFED62427947900264B83 /* OpenStreamMenu.swift in Sources */,
 				4DB4E66F2108FA7200C2F1F2 /* AppDelegate.swift in Sources */,
-				4D045DCB26D65A1D00D4D816 /* FileManager.swift in Sources */,
+				AD5A8325618CC7EF60F0CD61 /* String.swift in Sources */,
+				AD5A8E1D59A9E6B19EAFB5DD /* URL.swift in Sources */,
+				AD5A87C16ADD674A83F511DD /* AppConstants.swift in Sources */,
+				AD5A8022FAB8D399F2C0D627 /* URLSession.swift in Sources */,
+				AD5A816994F7B6FAEF5AC7F0 /* FileManager.swift in Sources */,
+				AD5A8FA5870DBB004FDB0279 /* Bundle.swift in Sources */,
+				AD5A8AFFC8E5D483298F1D99 /* AppError.swift in Sources */,
+				AD5A8B1147DBEFCDB64C9215 /* NSAlert.swift in Sources */,
+				AD5A82BE61F53B57EE2B4CC6 /* ExtractStream.swift in Sources */,
+				AD5A838924503652F64B72D0 /* LoadingIndicator.swift in Sources */,
+				AD5A8710E6D64CC1A15C834A /* DockerEngine.swift in Sources */,
+				AD5A8C93E5AA9CAF89B785D4 /* DockerImage.swift in Sources */,
+				AD5A8997FD737B11E1331545 /* AceStreamEngine.swift in Sources */,
+				AD5A8BAC68DF8FA7D78C1FAC /* StreamPeers.swift in Sources */,
+				4D867EEB2761340800EC726E /* main.swift in Sources */,
+				AD5A8C534C4A28B340F84D48 /* AceStreamPlaylist.swift in Sources */,
+				AD5A84F962215738740BB907 /* Process.swift in Sources */,
+				AD5A8AA375A29B3B6B7C4B7F /* Service.swift in Sources */,
+				AD5A8DFCB5206824C3DB82D1 /* Pipe.swift in Sources */,
+				AD5A80E628235858EAB10D6C /* PlaylistServer.swift in Sources */,
+				AD5A851516FD7B37B6A5216D /* AppConfig.swift in Sources */,
+				AD5A8E98E744D7649436ECEE /* NSWorkspace.swift in Sources */,
+				AD5A8D213856C326D6A81B2A /* PartialMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		4DB4E6742108FA7300C2F1F2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4DB4E6752108FA7300C2F1F2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4DB4E6792108FA7300C2F1F2 /* Debug */ = {
@@ -352,8 +445,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = blaise.io.acelink;
+				MARKETING_VERSION = "";
+				PRODUCT_BUNDLE_IDENTIFIER = io.blaise.acelink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -374,8 +467,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = blaise.io.acelink;
+				MARKETING_VERSION = "";
+				PRODUCT_BUNDLE_IDENTIFIER = io.blaise.acelink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
