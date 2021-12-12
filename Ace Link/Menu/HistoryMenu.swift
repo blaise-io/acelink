@@ -1,54 +1,61 @@
-import os
 import Cocoa
 import Foundation
+import os
 
-class HistoryMenu {
-    var historyAbsoluteDir: String
-    var historySubmenu: NSMenu = NSMenu()
-    var historyMenuItem = NSMenuItem(title: "History", action: nil, keyEquivalent: "")
+class HistoryMenu: PartialMenu {
+    private var menuItem = NSMenuItem(title: "History", action: nil, keyEquivalent: "")
 
-    init() {
-        let historyRelativeDir = "/Library/Application Support/Ace Link/streams"
-        historyAbsoluteDir = (NSHomeDirectory() as NSString).appendingPathComponent(historyRelativeDir)
+    override public var items: [NSMenuItem] {
+        [NSMenuItem.separator(), menuItem]
     }
 
-    func getHistory() -> [URL] {
+    override init() {
+        super.init()
+    }
+
+    override func update(canPlay: Bool) {
+        setSubmenuItems(canPlay: canPlay)
+    }
+
+    private func getHistory() -> [URL] {
         do {
-            try FileManager.default.createDirectory(atPath: historyAbsoluteDir, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(
+                atPath: AppConfig.streamsDir.path,
+                withIntermediateDirectories: true,
+                attributes: nil
+            )
         } catch {
-            os_log("Unable to create directory %{public}@: %{public}@", historyAbsoluteDir, error.localizedDescription)
+            os_log(
+                "Unable to create directory %{public}@: %{public}@",
+                AppConfig.streamsDir.path,
+                error.localizedDescription
+            )
             return []
         }
         do {
-            return try FileManager().contentsOfDirectory(atURL: URL(fileURLWithPath: historyAbsoluteDir), sortedBy: .accessed, ascending: false)!
+            return try FileManager.default.contentsOfDirectory(
+                atURL: AppConfig.streamsDir,
+                sortedBy: .modified,
+                ascending: false
+            )
         } catch {
-            os_log("Unable to read directory %{public}@: %{public}@", historyAbsoluteDir, error.localizedDescription)
+            os_log(
+                "Unable to read streams directory %{public}@: %{public}@",
+                AppConfig.streamsDir.path,
+                error.localizedDescription
+            )
             return []
         }
     }
 
-    func filterCompatibleFiles(files: [URL]) -> [URL] {
-        return files.filter { file in
-            return file.pathExtension == "m3u8"
+    private func setSubmenuItems(canPlay: Bool) {
+        let files = getHistory().filter { file in
+            file.pathExtension == "m3u8"
         }
-    }
 
-    @objc func install(_ sender: NSMenuItem?) {
-    }
-
-    func addItems(_ menu: NSMenu) {
-        menu.addItem(historyMenuItem)
-        menu.setSubmenu(historySubmenu, for: historyMenuItem)
-    }
-
-    func updateItems(dependenciesInstalled: Bool) {
-        historySubmenu.removeAllItems()
-        self.setSubmenuItems(isEnabled: dependenciesInstalled)
-    }
-
-    func setSubmenuItems(isEnabled: Bool) {
-        let files = filterCompatibleFiles(files: getHistory())
-        historyMenuItem.isEnabled = !files.isEmpty
+        let menu = NSMenu()
+        menuItem.submenu = menu
+        menuItem.isEnabled = !files.isEmpty
 
         if !files.isEmpty {
             let item = NSMenuItem(
@@ -57,28 +64,32 @@ class HistoryMenu {
                 keyEquivalent: "H"
             )
             item.target = self
-            item.isEnabled = isEnabled
-            historySubmenu.addItem(item)
+            item.isEnabled = canPlay
+            menu.addItem(item)
         }
 
         for file in files {
             let item = NSMenuItem(
                 title: file.deletingPathExtension().lastPathComponent,
-                action: #selector(self.openHistoryFile(_:)),
+                action: #selector(openHistoryFile(_:)),
                 keyEquivalent: ""
             )
             item.target = self
             item.representedObject = file
-            historySubmenu.addItem(item)
+            menu.addItem(item)
         }
     }
 
-    @objc func openInFinder(_ sender: NSMenuItem?) {
-        NSWorkspace.shared.openFile(historyAbsoluteDir)
+    @objc
+    private func openInFinder(_: NSMenuItem?) {
+        NSWorkspace.shared.openFile(AppConfig.streamsDir.path)
     }
 
-    @objc func openHistoryFile(_ sender: NSMenuItem?) {
-        let file = sender!.representedObject as! URL
+    @objc
+    private func openHistoryFile(_ sender: NSMenuItem?) {
+        guard let file = sender!.representedObject as? URL else {
+            return
+        }
         do {
             let fileContents = try String(contentsOf: file, encoding: .utf8)
             openAsStream(fileContents: fileContents)
@@ -87,22 +98,12 @@ class HistoryMenu {
         }
     }
 
-    func openAsStream(fileContents: String) {
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        for line in fileContents.components(separatedBy: CharacterSet.newlines) {
-            if line.hasPrefix("http://") {
-                guard let items = URLComponents(string: line)?.queryItems else {
-                    return
-                }
-                let id = items.filter({$0.name == "id"}).first?.value
-                if id != nil {
-                    appDelegate.openStream(id!, type: AppDelegate.StreamType.acestream)
-                    return
-                }
-                let infohash = items.filter({$0.name == "infohash"}).first?.value
-                if infohash != nil {
-                    appDelegate.openStream(infohash!, type: AppDelegate.StreamType.magnet)
-                    return
+    private func openAsStream(fileContents: String) {
+        let playlistLines = fileContents.components(separatedBy: CharacterSet.newlines)
+        for line in playlistLines where line.hasPrefix("http://") {
+            if let historyURL = URL(string: line) {
+                if let file = ExtractStream.from(historyURL: historyURL) {
+                    appDelegate.openStream(file)
                 }
             }
         }

@@ -1,63 +1,72 @@
-import os
 import Cocoa
 import Foundation
+import os
 
-class UpdateMenu {
-    let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-    let aceLinkDownloadLatestUrl = "https://github.com/blaise-io/acelink/releases/latest"
-    let aceLinkLatestApiUrl = "https://api.github.com/repos/blaise-io/acelink/releases/latest"
+private struct GetReleasesResponse: Decodable {
+    let tagName: String
 
-    let updateAvailableSeparatorItem = NSMenuItem.separator()
-    let updateAvailableItem = NSMenuItem(
+    enum CodingKeys: String, CodingKey {
+        case tagName = "tag_name"
+    }
+}
+
+class UpdateMenu: PartialMenu {
+    private let aceLinkDownloadLatestUrl = "https://github.com/blaise-io/acelink/releases/latest"
+    private let aceLinkLatestApiUrl =
+        "https://api.github.com/repos/blaise-io/acelink/releases/latest"
+
+    private let updateItem = NSMenuItem(
         title: "Update",
         action: #selector(openLastReleasePage(_:)),
         keyEquivalent: ""
     )
 
-    init() {
-        updateAvailableSeparatorItem.isHidden = true
-        updateAvailableItem.target = self
-        updateAvailableItem.isHidden = true
+    override public var items: [NSMenuItem] {
+        [NSMenuItem.separator(), updateItem]
+    }
 
-        DispatchQueue.main.async {
+    override init() {
+        super.init()
+
+        for item in items {
+            item.isHidden = true
+            item.target = self
+        }
+
+        DispatchQueue.global().async {
             self.checkNewReleaseAvailable()
         }
     }
 
-    @objc func openLastReleasePage(_ sender: NSMenuItem?) {
-        NSWorkspace.shared.open(
-            URL(string: aceLinkDownloadLatestUrl)!
-        )
+    @objc
+    func openLastReleasePage(_: NSMenuItem?) {
+        NSWorkspace.shared.open(URL(string: aceLinkDownloadLatestUrl)!)
     }
 
-    func addItems(_ menu: NSMenu) {
-        menu.addItem(self.updateAvailableSeparatorItem)
-        menu.addItem(self.updateAvailableItem)
-    }
-
-    func checkNewReleaseAvailable() {
+    private func checkNewReleaseAvailable() {
         let url = URL(string: aceLinkLatestApiUrl)!
-        struct Response: Decodable {
-            let tag_name: String
-        }
+        let urlSession = URLSession(configuration: .ephemeral)
 
-        URLSession(configuration: .ephemeral).dataTask(with: url) { data, _, error in
-            if let data = data {
-                do {
-                    let result = try JSONDecoder().decode(Response.self, from: data)
-                    let remote = result.tag_name
-                    os_log("Installed version: %{public}@, latest version available: %{public}@", self.version, remote)
+        urlSession.jsonDataTask(with: url, decodable: GetReleasesResponse.self) { result in
+            guard let result = result else {
+                os_log("Cannot retrieve installed version.")
+                return
+            }
 
-                    if self.version.compare(remote, options: .numeric) == .orderedAscending {
-                        os_log("Update is available")
-                        self.updateAvailableSeparatorItem.isHidden = false
-                        self.updateAvailableItem.isHidden = false
-                        self.updateAvailableItem.title = "Update to Ace Link \(remote)"
-                    }
+            let localVersion = AppConstants.version
+            let githubLatestVersion = result.tagName
 
-                } catch let error {
-                    os_log("Could not extract remote version: %{public}@", type: .error, error.localizedDescription)
+            os_log(
+                "Installed version: %{public}@, latest version available: %{public}@",
+                localVersion, githubLatestVersion
+            )
+
+            if localVersion.compare(githubLatestVersion, options: .numeric) == .orderedAscending {
+                os_log("Update is available")
+                for item in self.items {
+                    item.isHidden = false
                 }
+                self.updateItem.title = "Update to Ace Link \(githubLatestVersion)"
             }
         }.resume()
     }
