@@ -14,7 +14,7 @@ private struct GetStatsResponse: Decodable {
 class StreamPeers: Service {
     let statURL: URL
 
-    override var maxWait: DispatchTimeInterval { DispatchTimeInterval.seconds(30) }
+    override var maxWait: DispatchTimeInterval { DispatchTimeInterval.seconds(90) }
     override var defaultError: String { "Stream does not have peers." }
 
     init(statURL: URL) {
