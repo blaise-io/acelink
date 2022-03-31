@@ -8,7 +8,7 @@ RUN set -ex && \
         ca-certificates \
         python2.7 \
         libpython2.7 \
-        net-tools \
+        netcat \
         python-setuptools \
         python-m2crypto \
         python-apsw \
