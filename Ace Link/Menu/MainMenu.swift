@@ -46,6 +46,7 @@ class MainMenu: NSMenu {
 
     override func update() {
         let canPlay = NSWorkspace.shared.getBundle(bundleID: AppConstants.Docker.bundleID) != nil
+			|| Process.runCommand("colima").terminationStatus == 0
         for menu in partialMenus {
             menu.update(canPlay: canPlay)
         }
