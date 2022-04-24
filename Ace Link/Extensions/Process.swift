@@ -22,7 +22,7 @@ extension Process {
         process.launchPath = "/usr/bin/env"
         process.arguments = arguments
         process.environment = [
-            "PATH": ProcessInfo.processInfo.environment["PATH"]! + ":/usr/local/bin"
+            "PATH": ProcessInfo.processInfo.environment["PATH"]! + ":/usr/local/bin:/opt/local/bin"
         ]
 
         os_log("Running command: %{public}@", arguments.joined(separator: " ").scrubHashes())

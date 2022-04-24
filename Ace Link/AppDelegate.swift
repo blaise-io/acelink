@@ -26,9 +26,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_: NSApplication, open urls: [URL]) {
-        if NSWorkspace.shared.getBundle(bundleID: AppConstants.Docker.bundleID) == nil {
-            return
-        }
+		if Process.runCommand("docker").terminationStatus != 0 {
+			return
+		}
         if let url = urls.first, let stream = ExtractStream.from(applicationURL: url) {
             openStream(stream)
         } else {
