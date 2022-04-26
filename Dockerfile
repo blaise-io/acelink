@@ -46,7 +46,8 @@ RUN mkdir /acelink
 COPY acestream.conf /opt/acestream/acestream.conf
 ENTRYPOINT ["/opt/acestream/start-engine", "@/opt/acestream/acestream.conf"]
 
-HEALTHCHECK CMD wget -nv -t1 --spider http://localhost:6878 || exit 1
+HEALTHCHECK --interval=1m --timeout=3s --retries=3 \
+  CMD bash -c ':> /dev/tcp/127.0.0.1/6878' || exit 1
 
 EXPOSE 6878
 EXPOSE 8621
