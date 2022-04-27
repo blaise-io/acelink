@@ -46,8 +46,7 @@ RUN mkdir /acelink
 COPY acestream.conf /opt/acestream/acestream.conf
 ENTRYPOINT ["/opt/acestream/start-engine", "@/opt/acestream/acestream.conf"]
 
-HEALTHCHECK --interval=1m --timeout=3s --retries=3 \
-  CMD bash -c ':> /dev/tcp/127.0.0.1/6878' || exit 1
+HEALTHCHECK CMD wget -q -t1 -O- 'http://127.0.0.1:6878/webui/api/service?method=get_version' | grep '"error": null'
 
 EXPOSE 6878
 EXPOSE 8621
