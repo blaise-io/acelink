@@ -6,9 +6,10 @@ DOCKER_BUILDKIT ?= 1
 docker:
 	# Create docker image
 	docker build . --tag blaiseio/acelink:$(VERSION) --progress=plain
-	
+
 build:
 	# Create a build
+	sed -i '' 's/[0-9]\.[0-9]\.[0-9]/$(VERSION)/g' README.md
 	agvtool new-marketing-version $(VERSION)
 	xcodebuild -scheme 'Ace Link' archive -archivePath $(ARCHIVEDIR)
 
