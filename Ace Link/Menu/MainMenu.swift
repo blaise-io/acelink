@@ -60,13 +60,13 @@ class MainMenu: NSMenu {
 
         Supported formats:
 
-        • An AceStream hash.
+        • AceStream hash.
         Example: 049ea83561b6213dee5ae806cfdf52838a4c921e
 
-        • An AceStream hash including protocol.
+        • AceStream hash including protocol.
         Example: acestream://049ea83561b6213dee5ae806cfdf52838a4c921e
 
-        • A Magnet URI starting with magnet:?x followed by parameters.
+        • Magnet URI starting with magnet:?x followed by parameters.
         Example: magnet:?xt=urn:btih:c12fe1c06bbe254a9dc9f519b335aa7c1367a88a
 
         You can also open streams by selecting Ace Link when opening acestream:// or magnet: links.
