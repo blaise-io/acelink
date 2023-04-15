@@ -4,7 +4,7 @@ Ace Link is a menu bar app that allows playing Ace Streams on macOS.
 
 Play an Ace Stream or Magnet in any media player by pasting the URL in the Ace Link menu, or open an acestream or magnet link in Ace Link.
 
-## [Download for macOS](https://github.com/blaise-io/acelink/releases/download/2.0.3/Ace.Link.2.0.3.dmg)
+## [Download for macOS](https://github.com/blaise-io/acelink/releases/download/2.0.4/Ace.Link.2.0.4.dmg)
 
  - Install using HomeBrew: `brew install --cask ace-link`
  - [Download an older version](https://github.com/blaise-io/acelink/releases)
@@ -19,7 +19,7 @@ Ace Link allows selecting your own media player. Ace link does not transcode str
 
 ### Signing
 
-Ace Link is an unsigned app because Apple does not allow p2p related applications. If your version of macOS does not allow opening unsigned applications, [follow these instructions to bypass this restriction](http://osxdaily.com/2016/09/27/allow-apps-from-anywhere-macos-gatekeeper/).
+Ace Link is an unsigned app because Apple does not allow p2p related applications. If your version of macOS does not allow opening unsigned applications, [follow these instructions to bypass this restriction](https://apple.stackexchange.com/a/240560).
 
 ### Ace Stream server only
 
