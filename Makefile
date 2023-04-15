@@ -2,6 +2,7 @@ VERSION := $(shell cat VERSION)
 ARCHIVEDIR ?= $(CURDIR)/builds/archives/Ace.Link.$(VERSION).xcarchive
 RELEASEDIR ?= $(CURDIR)/builds/Ace.Link.$(VERSION)
 DOCKER_BUILDKIT ?= 1
+DOCKER_DEFAULT_PLATFORM ?= linux/amd64
 
 docker:
 	# Create docker image
@@ -13,6 +14,11 @@ build:
 	agvtool new-marketing-version $(VERSION)
 	xcodebuild -scheme 'Ace Link' archive -archivePath $(ARCHIVEDIR)
 
+tag:
+	# Create a new release tag
+	git tag $(VERSION)
+	git push origin --tags
+
 release:
 	# Create a new release DMG from the latest build
 	rm -rf $(RELEASEDIR)
@@ -23,8 +29,3 @@ release:
 	rm -rf $(RELEASEDIR)
 	open -a finder $(CURDIR)/builds
 	open https://github.com/blaise-io/acelink/releases/new
-
-release-tag:
-	# Create a new release tag
-	git tag $(VERSION)
-	git push origin --tags
