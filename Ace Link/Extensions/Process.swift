@@ -22,7 +22,8 @@ extension Process {
         process.launchPath = "/usr/bin/env"
         process.arguments = arguments
         process.environment = [
-            "PATH": ProcessInfo.processInfo.environment["PATH"]! + ":/usr/local/bin:/opt/local/bin"
+            "PATH": ProcessInfo.processInfo.environment["PATH"]! + ":/usr/local/bin:/opt/local/bin",
+            "DOCKER_DEFAULT_PLATFORM": "linux/amd64",
         ]
 
         os_log("Running command: %{public}@", arguments.joined(separator: " ").scrubHashes())
