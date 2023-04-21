@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_: NSApplication, open urls: [URL]) {
-		if Process.runCommand("docker", "--version").terminationStatus != 0 {
+		if Process.runCommand(Process.docker!, "--version").terminationStatus != 0 {
 			return
 		}
         if let url = urls.first, let stream = ExtractStream.from(applicationURL: url) {
@@ -207,6 +207,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func stopAceStreamServer() {
         os_log("Stopping AceStream server…")
-        _ = Process.runCommand("docker", "kill", AppConstants.Docker.containerName)
+        _ = Process.runCommand(Process.docker!, "kill", AppConstants.Docker.containerName)
     }
 }

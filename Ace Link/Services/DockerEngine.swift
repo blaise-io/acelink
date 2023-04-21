@@ -10,7 +10,7 @@ class DockerEngine: Service {
     }
 
     override func hasRunSuccesfully() -> Bool {
-        let process = Process.runCommand("docker", "ps")
+        let process = Process.runCommand(Process.docker!, "ps")
         return process.terminationStatus == 0
     }
 }

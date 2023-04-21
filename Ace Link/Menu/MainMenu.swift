@@ -45,7 +45,7 @@ class MainMenu: NSMenu {
     }
 
     override func update() {
-        let canPlay = Process.runCommand("docker", "--version").terminationStatus == 0
+        let canPlay = Process.docker != nil
         for menu in partialMenus {
             menu.update(canPlay: canPlay)
         }

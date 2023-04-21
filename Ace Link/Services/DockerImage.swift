@@ -6,7 +6,7 @@ class DockerImage: Service {
     override var defaultError: String { "Cannot pull \(AppConstants.Docker.image)." }
 
     override func run() {
-        _ = Process.runCommand("docker", "pull", AppConstants.Docker.image)
+        _ = Process.runCommand(Process.docker!, "pull", AppConstants.Docker.image)
     }
 
     override func hasRunSuccesfully() -> Bool {

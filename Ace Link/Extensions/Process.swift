@@ -1,3 +1,4 @@
+import Cocoa
 import Foundation
 import os
 
@@ -23,7 +24,7 @@ extension Process {
         process.arguments = arguments
         process.environment = [
             "PATH": ProcessInfo.processInfo.environment["PATH"]! + ":/usr/local/bin:/opt/local/bin",
-            "DOCKER_DEFAULT_PLATFORM": "linux/amd64",
+            "DOCKER_DEFAULT_PLATFORM": "linux/amd64"
         ]
 
         os_log("Running command: %{public}@", arguments.joined(separator: " ").scrubHashes())
@@ -42,5 +43,17 @@ extension Process {
         os_log("standardError: %{public}@", process.standardErrorContents.scrubHashes())
 
         return process
+    }
+
+    static var docker: String? {
+        if Process.runCommand("which", "docker").terminationStatus == 0 {
+            return "docker"
+        }
+        if let path = NSWorkspace.shared.getBinaryPath(bundleID: "com.docker.docker") {
+            return path
+        }
+        // Let it fail.
+        os_log("Cannot find Docker on PATH or by BundleID.")
+        return nil
     }
 }

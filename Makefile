@@ -29,3 +29,7 @@ release:
 	rm -rf $(RELEASEDIR)
 	open -a finder $(CURDIR)/builds
 	open https://github.com/blaise-io/acelink/releases/new
+
+lint:
+	# Apply code style
+	swiftlint . --fix

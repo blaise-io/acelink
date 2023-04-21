@@ -10,13 +10,13 @@ class AceStreamEngine: Service {
     override var defaultError: String { "Cannot run AceStream server." }
 
     override init() {
-        _ = Process.runCommand("docker", "kill", AppConstants.Docker.containerName)
+        _ = Process.runCommand(Process.docker!, "kill", AppConstants.Docker.containerName)
         super.init()
     }
 
     override func run() {
         let process = Process.runCommand(
-            "docker",
+            Process.docker!,
             "run",
             "--rm",
             "--detach",
