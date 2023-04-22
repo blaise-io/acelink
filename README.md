@@ -23,7 +23,15 @@ Ace Link is an unsigned app because Apple does not allow p2p related application
 
 ### Ace Stream server only
 
-If you want to run the AceStream engine without running Ace Link, you can just run `docker run --rm -p 6878:6878 blaiseio/acelink`. You can mount a custom config file: 
+If you want to run the AceStream engine without running Ace Link, you can run 
+
+```sh
+docker run --rm -p 6878:6878 blaiseio/acelink
+# now open http://<network ip>:6878/ace/getstream?id=<acestream id>
+# or http://<network ip>:6878/ace/getstream?infohash=<magnet uri> in a player
+```
+
+If you want to use a custom acestream.conf: 
 ```
 docker run --rm -p 6878:6878 -v "$(pwd)/acestream.conf:/opt/acestream/acestream.conf" blaiseio/acelink
 ```
