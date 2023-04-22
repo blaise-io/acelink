@@ -23,7 +23,7 @@ Ace Link is an unsigned app because Apple does not allow p2p related application
 
 ### Ace Stream server only
 
-If you want to run the AceStream engine without running Ace Link, you can run 
+If you just want to run the AceStream engine, you can do so without Ace Link:
 
 ```sh
 docker run --rm -p 6878:6878 blaiseio/acelink
