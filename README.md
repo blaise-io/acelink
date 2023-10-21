@@ -35,3 +35,11 @@ If you want to use a custom acestream.conf:
 ```
 docker run --platform=linux/amd64 --rm -p 6878:6878 -v "$(pwd)/acestream.conf:/opt/acestream/acestream.conf" blaiseio/acelink
 ```
+
+### View Ace Link logs
+
+1. Open Console.app
+2. In the Console.app search field, type `Process: Ace Link`
+3. Click on *Start* or *Start streaming*
+4. Launch Ace Link and perform an action you want to debug
+5. It should now start populating Console.app with debug information
