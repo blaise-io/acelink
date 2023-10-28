@@ -71,8 +71,10 @@ class SelectPlayerMenu: PartialMenu {
     private func warnCapabilities(bundle: Bundle) {
         if bundle.supports(fileExtension: "mkv") {
             // Players that support mkv will likely play anything you throw at it.
-            // Typically we need h264, ac3, adts and ts support, however streams could use any codec.
-            // Browsers are unable to play the adts audio codec, which is relatively popular in streams.
+            // Typically we need h264, ac3, adts and ts support, however streams could use any
+            // codec.
+            // Browsers are unable to play the adts audio codec, which is relatively popular in
+            // streams.
             return
         }
 
