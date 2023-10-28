@@ -15,7 +15,7 @@ Requires Docker and macOS High Sierra (10.13) or later.
 
 ### Media players
 
-Ace Link allows selecting your own media player. Ace link does not transcode streams, so pick a player that supports popular audio and video codecs. VLC, IINA and MPV are free and open source media players that are able to play nearly anything. QuickTime and web browsers will play most streams, but not all. 
+Ace Link allows selecting your own media player. Ace Link does not transcode streams, so pick a player that supports popular audio and video codecs. VLC, IINA and MPV are free and open source media players that are able to play nearly anything. QuickTime and web browsers will play most streams, but not all. 
 
 ### Signing
 
