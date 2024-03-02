@@ -14,7 +14,7 @@ class PlaylistServer: Service {
 
     override func run() {
         let cmdInContainer = "echo '\(stream.m3uData)' > acelink.m3u8;" +
-            "python -m SimpleHTTPServer \(AppConstants.Docker.proxyPort)"
+            "python3 -m http.server \(AppConstants.Docker.proxyPort)"
         _ = Process.runCommand(
             "docker", "exec", "--detach", "--workdir=/acelink", engine.containerID!,
             "sh", "-c", cmdInContainer
