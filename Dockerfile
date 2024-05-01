@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:20.04
+FROM --platform=linux/amd64 ubuntu:focal
 
 ENV LC_ALL="C.UTF-8" \
     LANG="C.UTF-8" \
