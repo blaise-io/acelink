@@ -19,8 +19,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked\
     echo "$CHECKSUM /opt/acestream/acestream.tgz" | sha256sum --check;\
     tar --extract --gzip --directory /opt/acestream --file /opt/acestream/acestream.tgz;\
     rm /opt/acestream/acestream.tgz;\
-    cat /opt/acestream/requirements.txt;\
-    pip3 install -r /opt/acestream/requirements.txt;\
+    python3 -m pip install -r /opt/acestream/requirements.txt;\
     /opt/acestream/start-engine --version;
 
 # Overwrite disfunctional Ace Stream web player with a working videojs player,
