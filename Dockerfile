@@ -12,10 +12,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked\
     --mount=type=tmpfs,target=/tmp\
     set -ex;\
     apt-get update;\
-    apt-get install -yq --no-install-recommends python3.8 libpython3.8 python3-pip wget;\
+    apt-get install -yq --no-install-recommends ca-certificates python3.8 libpython3.8 python3-pip wget;\
     echo "wget here";\
     mkdir -p /opt/acestream;\
-    wget --progress=dot:mega --no-check-certificate --output-document /opt/acestream/acestream.tgz $DOWNLOAD_URL;\
+    wget --no-verbose --output-document /opt/acestream/acestream.tgz $DOWNLOAD_URL;\
     echo "$CHECKSUM /opt/acestream/acestream.tgz" | sha256sum --check;\
     tar --extract --gzip --directory /opt/acestream --file /opt/acestream/acestream.tgz;\
     rm /opt/acestream/acestream.tgz;\
