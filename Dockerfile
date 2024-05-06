@@ -13,7 +13,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked\
     set -ex;\
     apt-get update;\
     apt-get install -yq --no-install-recommends ca-certificates python3.8 libpython3.8 python3-pip wget;\
-    echo "wget here";\
     mkdir -p /opt/acestream;\
     wget --no-verbose --output-document /opt/acestream/acestream.tgz $DOWNLOAD_URL;\
     echo "$CHECKSUM /opt/acestream/acestream.tgz" | sha256sum --check;\
