@@ -24,7 +24,6 @@ class AceStreamEngine: Service {
             "--publish=\(AppConstants.Docker.proxyPort):\(AppConstants.Docker.proxyPort)",
             "--name=\(AppConstants.Docker.containerName)",
             AppConstants.Docker.image,
-            "/opt/acestream/start-engine",
             "--client-console",
             "--access-token=\(token)",
             "--allow-user-config",
@@ -45,6 +44,7 @@ class AceStreamEngine: Service {
     override func check() {
         let serverURL = AppConstants.Docker.baseURL
             .appendingPathComponent("/webui/app/\(token)/server")
+        os_log("Check server up at %{public}@ …", serverURL.absoluteString)
         urlSession.dataTask(with: serverURL) { data, _, _ in
             if let data = data, let str = String(data: data, encoding: .utf8) {
                 self.accessToken = str.matches(for: "\"access_token\": \"([^\"]{64})\"").first
