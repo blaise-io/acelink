@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:20.04
+FROM --platform=linux/amd64 ubuntu:focal
 
 ENV LC_ALL="C.UTF-8" \
     LANG="C.UTF-8" \
-    DOWNLOAD_URL="http://download.acestream.media/linux/acestream_3.1.75rc4_ubuntu_18.04_x86_64_py3.8.tar.gz" \
-    CHECKSUM="6d4947dffad58754a6de725d49f8f9a574931c13c293eb4c9c3f324e93ba8356"
+    DOWNLOAD_URL="https://download.acestream.media/linux/acestream_3.2.3_ubuntu_18.04_x86_64_py3.8.tar.gz" \
+    CHECKSUM="bf45376f1f28aaff7d9849ff991bf34a6b9a65542460a2344a8826126c33727d"
 
 # Install system packages.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked\
@@ -12,15 +12,14 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked\
     --mount=type=tmpfs,target=/tmp\
     set -ex;\
     apt-get update;\
-    apt-get install -yq --no-install-recommends python3.8 libpython3.8 python3-pip wget;\
+    apt-get install -yq --no-install-recommends ca-certificates python3.8 libpython3.8 python3-pip wget;\
     echo "wget here";\
     mkdir -p /opt/acestream;\
-    wget --progress=dot:mega --no-check-certificate --output-document /opt/acestream/acestream.tgz $DOWNLOAD_URL;\
+    wget --no-verbose --output-document /opt/acestream/acestream.tgz $DOWNLOAD_URL;\
     echo "$CHECKSUM /opt/acestream/acestream.tgz" | sha256sum --check;\
     tar --extract --gzip --directory /opt/acestream --file /opt/acestream/acestream.tgz;\
     rm /opt/acestream/acestream.tgz;\
-    cat /opt/acestream/requirements.txt;\
-    pip3 install -r /opt/acestream/requirements.txt;\
+    python3 -m pip install -r /opt/acestream/requirements.txt;\
     /opt/acestream/start-engine --version;
 
 # Overwrite disfunctional Ace Stream web player with a working videojs player,
