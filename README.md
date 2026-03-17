@@ -1,7 +1,7 @@
 # Adding notes to a project (classic)
 
 > [!WARNING]
-> Due to time constraints, I will not review issues or pull requests unless core functionality is broken for most users. I am open to transferring ownership of this project to contributors who have selflessly helped improving this project in 2025 or before. You are also welcome to fork the project. If a fork gains traction within the community, I will mark this project as archived and link to it.
+> Due to time constraints, I will not review issues or pull requests unless core functionality is broken for most users. I am open to transferring ownership of this project to contributors who have selflessly helped improving this project in 2025 or before. You are also welcome to fork the project. If a fork gains traction within the community, I will archive this project and link to the fork.
 
    ![Screenshot of two cards in a project. The card menu button in the note card is highlighted with an orange outline.](/assets/images/help/projects/note-more-options.png)
 3. Click **Convert to issue**.
