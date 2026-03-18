@@ -102,7 +102,8 @@ class HistoryMenu: PartialMenu {
         let playlistLines = fileContents.components(separatedBy: CharacterSet.newlines)
         for line in playlistLines where line.hasPrefix("http://") {
             if let historyURL = URL(string: line) {
-                if let file = ExtractStream.from(historyURL: historyURL) {
+                if let file = ExtractStream.from(historyURL: historyURL),
+                   let appDelegate = NSApplication.shared.delegate as? AppDelegate {
                     appDelegate.openStream(file)
                 }
             }

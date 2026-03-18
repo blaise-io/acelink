@@ -28,7 +28,8 @@ class OpenStreamMenu: PartialMenu {
 
     @objc
     private func openStreamFromClipboard(_: NSMenuItem?) {
-        if let stream = streamFromClipboard {
+        if let stream = streamFromClipboard,
+           let appDelegate = NSApplication.shared.delegate as? AppDelegate {
             appDelegate.openStream(stream)
         }
     }
