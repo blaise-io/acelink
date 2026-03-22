@@ -1,24 +1,32 @@
 # syntax=docker/dockerfile:1
-FROM --platform=linux/amd64 ubuntu:focal
+FROM --platform=linux/amd64 apteno/alpine-jq:2024-05-12 AS acestream
 
-ENV LC_ALL="C.UTF-8" \
-    LANG="C.UTF-8" \
+ARG DEST_FILE=acestream.tgz \
+    TMP_DIR=/tmp/acestream \
     DOWNLOAD_URL="https://download.acestream.media/linux/acestream_3.2.3_ubuntu_18.04_x86_64_py3.8.tar.gz" \
     CHECKSUM="bf45376f1f28aaff7d9849ff991bf34a6b9a65542460a2344a8826126c33727d"
+
+RUN mkdir -p "$TMP_DIR" && \
+    wget --no-verbose -O "$DEST_FILE" "$DOWNLOAD_URL" && \
+    echo "$CHECKSUM $DEST_FILE" | sha256sum -cs && \
+    tar --extract --gzip --directory "$TMP_DIR" --file "$DEST_FILE"
+
+FROM --platform=linux/amd64 ubuntu:focal
+
+RUN mkdir /opt/acestream
+
+COPY --from=acestream "/tmp/acestream" "/opt/acestream/"
+
+ARG DEBIAN_FRONTEND=noninteractive \
+    DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Install system packages.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked\
     --mount=type=cache,target=/var/lib/apt,sharing=locked\
     --mount=type=tmpfs,target=/tmp\
-    set -ex;\
     apt-get update;\
-    apt-get install -yq --no-install-recommends ca-certificates python3.8 libpython3.8 python3-pip wget;\
-    mkdir -p /opt/acestream;\
-    wget --no-verbose --output-document /opt/acestream/acestream.tgz $DOWNLOAD_URL;\
-    echo "$CHECKSUM /opt/acestream/acestream.tgz" | sha256sum --check;\
-    tar --extract --gzip --directory /opt/acestream --file /opt/acestream/acestream.tgz;\
-    rm /opt/acestream/acestream.tgz;\
-    python3 -m pip install -r /opt/acestream/requirements.txt;\
+    apt-get install -yq --no-install-recommends python3.8 libpython3.8 python3-pip;\
+    python3 -m pip install --no-cache-dir -r /opt/acestream/requirements.txt;\
     /opt/acestream/start-engine --version;
 
 # Overwrite disfunctional Ace Stream web player with a working videojs player,
