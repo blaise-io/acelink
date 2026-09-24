@@ -25,21 +25,41 @@ extension Process {
         return nil
     }
 
+    var hasConfiguredDockerContext: Bool {
+        let environment = ProcessInfo.processInfo.environment
+        if let context = environment["DOCKER_CONTEXT"], !context.isEmpty {
+            return true
+        }
+
+        let home = FileManager.default.homeDirectoryForCurrentUser
+        let configDirectory = environment["DOCKER_CONFIG"].map { URL(fileURLWithPath: $0) }
+            ?? home.appendingPathComponent(".docker")
+        let configURL = configDirectory.appendingPathComponent("config.json")
+        guard let data = try? Data(contentsOf: configURL),
+              let config = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let context = config["currentContext"] as? String else {
+            return false
+        }
+        return !context.isEmpty && context != "default"
+    }
+
     static func runCommand(_ arguments: String...) -> Self {
         let process = Self()
 
         process.launchPath = "/usr/bin/env"
         process.arguments = arguments
-        process.environment = [
-            // Modify PATH to include dirs containing local binaries.
-            "PATH": ProcessInfo.processInfo.environment["PATH"]! + ":/usr/local/bin:/opt/local/bin",
-            // Don't attempt to download/run arm64 packages because they're not supported.
-            "DOCKER_DEFAULT_PLATFORM": "linux/amd64",
-        ]
+        process.environment = ProcessInfo.processInfo.environment
+        let path = process.environment?["PATH"] ?? "/usr/bin:/bin:/usr/sbin:/sbin"
+        process.environment?["PATH"] = path + ":/opt/homebrew/bin:/usr/local/bin:/opt/local/bin"
+        // Don't attempt to download/run arm64 packages because they're not supported.
+        process.environment?["DOCKER_DEFAULT_PLATFORM"] = "linux/amd64"
 
         // Docker-for-Mac allows both /Users/<user>/.docker/run/docker.sock (new)
-        // and /var/run/docker.sock (legacy but supported).
-        if let userDockerSocket = process.userDockerSocket {
+        // and /var/run/docker.sock (legacy but supported). Only use the user
+        // socket when Docker has no explicit host or selected context.
+        if process.environment?["DOCKER_HOST"] == nil,
+           !process.hasConfiguredDockerContext,
+           let userDockerSocket = process.userDockerSocket {
             process.environment?["DOCKER_HOST"] = "unix://" + userDockerSocket
         }
 
