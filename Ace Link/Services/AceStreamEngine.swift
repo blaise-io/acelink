@@ -10,7 +10,8 @@ class AceStreamEngine: Service {
     override var defaultError: String { "Cannot run AceStream server." }
 
     override init() {
-        _ = Process.runCommand("docker", "kill", AppConstants.Docker.containerName)
+        // A killed --rm container can still hold its name while Docker removes it.
+        _ = Process.runCommand("docker", "rm", "--force", AppConstants.Docker.containerName)
         super.init()
     }
 
@@ -33,15 +34,19 @@ class AceStreamEngine: Service {
             "-–vod-buffer=15",
             "--vod-cache-type=memory"
         )
-        if process.standardOutContents.isEmpty {
-            os_log("Cannot get engine ID...")
-            callback(nil)
+        if process.terminationStatus != 0 || process.standardOutContents.isEmpty {
+            os_log("Cannot start AceStream container.")
             return
         }
         containerID = process.standardOutContents
     }
 
     override func check() {
+        guard containerID != nil else {
+            callbackInMainThread(AppError(defaultError))
+            return
+        }
+
         let serverURL = AppConstants.Docker.baseURL
             .appendingPathComponent("/webui/app/\(token)/server")
         os_log("Check server up at %{public}@ …", serverURL.absoluteString)
