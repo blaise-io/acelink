@@ -40,7 +40,8 @@ struct StreamFile {
     }
 
     func addToHistory() {
-        let file = AppConfig.streamsDir.appendingPathComponent("\(title).m3u8")
+        let fileName = title.replacingOccurrences(of: "/", with: "-")
+        let file = AppConfig.streamsDir.appendingPathComponent("\(fileName).m3u8")
         os_log("Writing data file to %{public}s to maintain history.", file.path)
         do {
             try m3uData.write(to: file, atomically: false, encoding: .utf8)
